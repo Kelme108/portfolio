@@ -3,8 +3,8 @@ title: RootDas Pentest Book
 description: Cybersecurity & Pentest Write-ups
 author: Luiz Kelme
 email: seu-email@example.com
-url: "https://seuusuario.github.io"
-baseurl: ""
+baseurl: "/portfolio"
+url: "https://kelme108.github.io"
 
 markdown: kramdown
 highlighter: rouge

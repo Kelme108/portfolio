@@ -6,20 +6,12 @@
     <p>Cybersecurity & Pentest</p>
   </div>
 
-  <nav class="menu">
-    <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>
-      🏠 Home
-    </a>
-    <a href="{{ '/writeups.html' | relative_url }}" {% if page.url contains 'writeup' %}class="active"{% endif %}>
-      🧠 Write-ups
-    </a>
-    <a href="{{ '/projects.html' | relative_url }}" {% if page.url contains 'project' %}class="active"{% endif %}>
-      📁 Projects
-    </a>
-    <a href="{{ '/about.html' | relative_url }}" {% if page.url contains 'about' %}class="active"{% endif %}>
-      👤 Sobre
-    </a>
-  </nav>
+<nav class="menu">
+  <a href="{{ site.baseurl }}/">🏠 Home</a>
+  <a href="{{ site.baseurl }}/writeups/">🧠 Write-ups</a>
+  <a href="{{ site.baseurl }}/theory/">📘 Projects</a>
+  <a href="{{ site.baseurl }}/about/">👤 About</a>
+</nav>
 
   <footer class="sidebar-footer">
     <p>© 2025 RootDas</p>
