@@ -1,5 +1,73 @@
-
 <!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About — RootDas Pentest Book</title>
+  
+  <!-- CSS -->
+<link rel="stylesheet" href="/portfolio/styles/main.css">
+<link rel="stylesheet" href="/portfolio/styles/sidebar.css">
+<link rel="stylesheet" href="/portfolio/styles/right-sidebar.css">
+<link rel="stylesheet" href="/portfolio/styles/cards.css">
+<link rel="stylesheet" href="/portfolio/styles/markdown.css">
+<link rel="stylesheet" href="/portfolio/styles/responsive.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>About | RootDas Pentest Book</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="About" />
+<meta name="author" content="Luiz Kelme" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Cybersecurity &amp; Pentest Write-ups" />
+<meta property="og:description" content="Cybersecurity &amp; Pentest Write-ups" />
+<link rel="canonical" href="http://localhost:4000/portfolio/about/" />
+<meta property="og:url" content="http://localhost:4000/portfolio/about/" />
+<meta property="og:site_name" content="RootDas Pentest Book" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="About" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"Luiz Kelme"},"description":"Cybersecurity &amp; Pentest Write-ups","headline":"About","name":"RootDas Pentest Book","url":"http://localhost:4000/portfolio/about/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+  <div class="layout">
+    <!-- Left Sidebar -->
+<aside class="sidebar">
+  <div class="profile">
+    <img src="/portfolio/assets/avatar.jpg" alt="Foto de perfil">
+    <h2>RootDas Pentest book</h2>
+    <p>Cybersecurity & Pentest</p>
+  </div>
+
+<nav class="menu">
+  <a href="/portfolio/">🏠 Home</a>
+  <a href="/portfolio/writeups/">🧠 Write-ups</a>
+  <a href="/portfolio/theory/">📘 Projects</a>
+  <a href="/portfolio/about/">👤 About</a>
+</nav>
+
+  <footer class="sidebar-footer">
+    <p>© 2025 RootDas</p>
+  </footer>
+</aside>
+    
+    <main class="content">
+      <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -330,7 +398,7 @@
       <nav class="menu">
         <a href="index.html">🏠 Home</a>
         <a href="writeups.html">🧠 Write-ups</a>
-        <a href="projects.html">📘 Projects</a>
+        <a href="theory.html">📘 Theory</a>
         <a href="about.html" class="active">👤 About</a>
       </nav>
 
@@ -543,6 +611,34 @@
       </div>
     </main>
 
+    <!-- Right Sidebar -->
+    <aside class="right-sidebar">
+      <h3>⚙️ Tech Stack</h3>
+      <div class="tech-grid">
+        <div class="tech-card"><div class="icon">🌐</div><h4>Nmap</h4><p>Reconnaissance</p></div>
+        <div class="tech-card"><div class="icon">🧠</div><h4>Wireshark</h4><p>Traffic Analysis</p></div>
+        <div class="tech-card"><div class="icon">🛡️</div><h4>Burp Suite</h4><p>Web Security</p></div>
+        <div class="tech-card"><div class="icon">💀</div><h4>Metasploit</h4><p>Exploitation</p></div>
+        <div class="tech-card"><div class="icon">🐍</div><h4>Python</h4><p>Programming</p></div>
+        <div class="tech-card"><div class="icon">💻</div><h4>Bash</h4><p>Scripting</p></div>
+        <div class="tech-card"><div class="icon">🗃️</div><h4>SQLMap</h4><p>Databases</p></div>
+        <div class="tech-card"><div class="icon">🔐</div><h4>Hashcat</h4><p>Cracking</p></div>
+      </div>
+    </aside>
+
+  </div>
+</body>
+</html>
+'''
+
+import os
+os.makedirs('output', exist_ok=True)
+with open('output/about.html', 'w', encoding='utf-8') as f:
+    f.write(about)
+
+print("Done:", len(about), "chars")
+    </main>
+    
     <!-- Right Sidebar (dentro da .layout) -->
 <aside class="right-sidebar">
   <h3>⚙️ Stack Tecnológica</h3>
@@ -621,15 +717,9 @@
 
   </div>
 </aside>
-
   </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
 </body>
 </html>
-'''
-
-import os
-os.makedirs('output', exist_ok=True)
-with open('output/about.html', 'w', encoding='utf-8') as f:
-    f.write(about)
-
-print("Done:", len(about), "chars")
