@@ -1,0 +1,514 @@
+/* ====== Markdown Content Styling ====== */
+
+.markdown-body,
+.writeup-content {
+  line-height: 1.9;
+  color: var(--text);
+  font-size: 1.05rem;
+}
+
+/* ====== Texto corrido apenas ====== */
+.markdown-body p,
+.writeup-content p,
+.markdown-body li,
+.writeup-content li,
+.markdown-body blockquote,
+.writeup-content blockquote,
+.markdown-body td,
+.writeup-content td {
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* ====== Headings ====== */
+.markdown-body h1,
+.writeup-content h1 {
+  font-size: 2.3rem;
+  color: var(--accent);
+  margin-bottom: 1.4rem;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 2px solid rgba(214, 138, 160, 0.7);
+  padding-bottom: 0.9rem;
+  text-shadow: 0 0 10px rgba(214, 138, 160, 0.18);
+}
+
+.markdown-body h2,
+.writeup-content h2 {
+  font-size: 1.85rem;
+  color: var(--accent-light);
+  margin-top: 2.8rem;
+  margin-bottom: 1rem;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border-bottom: 1px solid rgba(214, 138, 160, 0.45);
+  padding-bottom: 0.65rem;
+}
+
+.markdown-body h2::before,
+.writeup-content h2::before {
+  content: '';
+  margin-right: 0;
+}
+
+.markdown-body h3,
+.writeup-content h3 {
+  font-size: 1.35rem;
+  color: var(--accent-light);
+  margin-top: 2rem;
+  margin-bottom: 0.9rem;
+  font-family: 'Courier New', monospace;
+}
+
+.markdown-body h3::before,
+.writeup-content h3::before {
+  content: '';
+  margin-right: 0;
+}
+
+.markdown-body h4,
+.writeup-content h4 {
+  font-size: 1.15rem;
+  color: var(--text);
+  margin-top: 1.4rem;
+  margin-bottom: 0.7rem;
+  font-family: 'Courier New', monospace;
+}
+
+/* ====== Paragraphs ====== */
+.markdown-body p,
+.writeup-content p {
+  margin-bottom: 1.35rem;
+  line-height: 1.85;
+  color: #e9e9ec;
+}
+
+/* ====== Links ====== */
+.markdown-body a,
+.writeup-content a {
+  color: var(--accent-light);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(214, 138, 160, 0.25);
+  transition: all 0.25s ease;
+}
+
+.markdown-body a:hover,
+.writeup-content a:hover {
+  color: #f0b3bf;
+  border-bottom-color: #f0b3bf;
+  text-shadow: none;
+}
+
+/* ====== Lists ====== */
+.markdown-body ul,
+.markdown-body ol,
+.writeup-content ul,
+.writeup-content ol {
+  margin: 1.4rem 0;
+  padding-left: 2rem;
+}
+
+.markdown-body li,
+.writeup-content li {
+  margin-bottom: 0.7rem;
+  line-height: 1.75;
+}
+
+.markdown-body li::marker,
+.writeup-content li::marker {
+  color: rgba(214, 138, 160, 0.85);
+  font-weight: bold;
+}
+
+.markdown-body ul ul,
+.markdown-body ol ol,
+.writeup-content ul ul,
+.writeup-content ol ol {
+  margin: 0.4rem 0;
+}
+
+/* ====== Code Blocks ====== */
+.markdown-body pre,
+.writeup-content pre {
+  background: #101012;
+  border: 1px solid rgba(214, 138, 160, 0.18);
+  border-left: 3px solid rgba(214, 138, 160, 0.8);
+  border-radius: 10px;
+  padding: 1.4rem;
+  overflow-x: auto;
+  margin: 2rem 0;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
+  position: relative;
+}
+
+.markdown-body pre code,
+.writeup-content pre code {
+  background: transparent;
+  padding: 0;
+  border: none;
+  color: #ececef;
+  font-family: 'Courier New', monospace;
+}
+
+.markdown-body code,
+.writeup-content code {
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* ====== Inline Code ====== */
+.markdown-body :not(pre) > code,
+.writeup-content :not(pre) > code {
+  background: rgba(214, 138, 160, 0.1);
+  color: #f0b3bf;
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+  border: 1px solid rgba(214, 138, 160, 0.15);
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+}
+
+/* ====== Blockquotes ====== */
+.markdown-body blockquote,
+.writeup-content blockquote {
+  border-left: 3px solid rgba(214, 138, 160, 0.7);
+  background: rgba(214, 138, 160, 0.04);
+  padding: 1.1rem 1.5rem;
+  margin: 2rem 0;
+  border-radius: 0 8px 8px 0;
+  font-style: italic;
+  color: #cfcfd5;
+  position: relative;
+}
+
+.markdown-body blockquote::before,
+.writeup-content blockquote::before {
+  content: '"';
+  font-size: 2.5rem;
+  color: rgba(214, 138, 160, 0.2);
+  position: absolute;
+  left: 0.8rem;
+  top: -0.3rem;
+}
+
+.markdown-body blockquote p,
+.writeup-content blockquote p {
+  margin-bottom: 0;
+}
+
+/* ====== Images ====== */
+.markdown-body img,
+.writeup-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  margin: 2.2rem 0;
+  border: 1px solid rgba(214, 138, 160, 0.18);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  display: block;
+}
+
+.markdown-body img:hover,
+.writeup-content img:hover {
+  transform: translateY(-2px);
+  border-color: rgba(214, 138, 160, 0.5);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.34);
+}
+
+/* ====== Tables ====== */
+.markdown-body table,
+.writeup-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2.5rem 0;
+  background: rgba(16, 16, 18, 0.95);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.markdown-body th,
+.writeup-content th {
+  background: rgba(214, 138, 160, 0.16);
+  color: #f4d7de;
+  padding: 1rem 1.1rem;
+  text-align: left;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  font-weight: 700;
+}
+
+.markdown-body td,
+.writeup-content td {
+  padding: 1rem 1.1rem;
+  border-bottom: 1px solid rgba(214, 138, 160, 0.08);
+  color: var(--text);
+}
+
+.markdown-body tr:last-child td,
+.writeup-content tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-body tr:hover,
+.writeup-content tr:hover {
+  background: rgba(214, 138, 160, 0.04);
+}
+
+/* ====== Horizontal Rule ====== */
+.markdown-body hr,
+.writeup-content hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(214, 138, 160, 0.7), transparent);
+  margin: 2.8rem 0;
+}
+
+/* ====== Strong/Bold ====== */
+.markdown-body strong,
+.writeup-content strong {
+  color: #f0b3bf;
+  font-weight: 700;
+}
+
+/* ====== Emphasis/Italic ====== */
+.markdown-body em,
+.writeup-content em {
+  color: #e6bcc6;
+  font-style: italic;
+}
+
+/* ====== Task Lists (checkboxes) ====== */
+.markdown-body input[type="checkbox"],
+.writeup-content input[type="checkbox"] {
+  margin-right: 0.5rem;
+  accent-color: var(--accent);
+}
+
+/* ====== Keyboard keys ====== */
+.markdown-body kbd,
+.writeup-content kbd {
+  background: rgba(20, 20, 24, 0.95);
+  border: 1px solid rgba(214, 138, 160, 0.12);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  color: #f0b3bf;
+  box-shadow: none;
+}
+
+/* ====== Details/Summary (accordion) ====== */
+.markdown-body details,
+.writeup-content details {
+  background: rgba(13, 13, 13, 0.45);
+  border: 1px solid rgba(214, 138, 160, 0.12);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+.markdown-body summary,
+.writeup-content summary {
+  cursor: pointer;
+  color: var(--accent-light);
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+  user-select: none;
+}
+
+.markdown-body summary:hover,
+.writeup-content summary:hover {
+  color: #f0b3bf;
+}
+
+/* ====== Footnotes ====== */
+.markdown-body .footnote,
+.writeup-content .footnote {
+  font-size: 0.85rem;
+  color: var(--muted);
+  vertical-align: super;
+}
+
+.markdown-body .footnotes,
+.writeup-content .footnotes {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(214, 138, 160, 0.18);
+  font-size: 0.9rem;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 768px) {
+  .markdown-body h1,
+  .writeup-content h1 {
+    font-size: 1.9rem;
+  }
+
+  .markdown-body h2,
+  .writeup-content h2 {
+    font-size: 1.45rem;
+  }
+
+  .markdown-body h3,
+  .writeup-content h3 {
+    font-size: 1.2rem;
+  }
+
+  .markdown-body pre,
+  .writeup-content pre {
+    padding: 1rem;
+    font-size: 0.85rem;
+  }
+
+  .markdown-body table,
+  .writeup-content table {
+    font-size: 0.85rem;
+  }
+
+  .markdown-body th,
+  .markdown-body td,
+  .writeup-content th,
+  .writeup-content td {
+    padding: 0.8rem;
+  }
+}
+
+.writeup-header {
+  text-align: center;
+  padding: 2.2rem 1.5rem 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(214, 138, 160, 0.12);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, rgba(214, 138, 160, 0.05), rgba(255, 255, 255, 0.01));
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+}
+
+.header-badge {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.2rem;
+}
+
+.platform-badge,
+.difficulty-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.42rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  border: 1px solid rgba(214, 138, 160, 0.18);
+  background: rgba(214, 138, 160, 0.08);
+  color: #f2c5cf;
+}
+
+.writeup-title {
+  margin: 0 auto 1.4rem;
+  max-width: 14ch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.08;
+  font-weight: 800;
+  color: #e7a7b6;
+  text-shadow: 0 0 14px rgba(214, 138, 160, 0.16);
+}
+
+.title-icon {
+  font-size: 0.82em;
+  opacity: 0.9;
+}
+
+.writeup-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, 1fr));
+  gap: 0.9rem;
+  margin: 1.4rem auto 0;
+  max-width: 760px;
+}
+
+.meta-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 0.95rem 1rem;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(214, 138, 160, 0.1);
+  text-align: left;
+}
+
+.meta-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #cf8fa0;
+}
+
+.meta-value {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: #f1f1f3;
+}
+
+.writeup-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.3rem;
+}
+
+.tag,
+.sidebar-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.42rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(214, 138, 160, 0.08);
+  border: 1px solid rgba(214, 138, 160, 0.14);
+  color: #efc0cb;
+  font-size: 0.82rem;
+}
+
+.divider {
+  border: none;
+  height: 1px;
+  margin: 2rem 0 2.4rem;
+  background: linear-gradient(90deg, transparent, rgba(214, 138, 160, 0.6), transparent);
+}
+
+@media (max-width: 768px) {
+  .writeup-header {
+    padding: 1.6rem 1rem 1.2rem;
+  }
+
+  .writeup-title {
+    font-size: 1.9rem;
+    max-width: 100%;
+  }
+
+  .writeup-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .meta-card {
+    align-items: center;
+    text-align: center;
+  }
+}

@@ -1,0 +1,324 @@
+/* ====== Variáveis de tema ====== */
+:root {
+  --bg: #0d0e11;
+  --bg-soft: #14161a;
+  --text: #e8e9ee;
+  --muted: #a8abb4;
+
+  --accent: #c87690;
+  --accent-light: #df9db0;
+  --accent-soft: rgba(200, 118, 144, 0.08);
+  --accent-line: rgba(200, 118, 144, 0.22);
+  --accent-glow: rgba(200, 118, 144, 0.06);
+
+  --border: rgba(200, 118, 144, 0.12);
+}
+
+/* ====== Reset ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ====== Layout geral ====== */
+.layout {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg);
+  align-items: flex-start;
+}
+
+/* ====== Área principal ====== */
+.content {
+  flex: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 2rem 3rem 17rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.content-writeups {
+  flex: 1;
+  margin-left: 20px;
+  padding: 3rem 2rem;
+}
+
+/* ====== Header ====== */
+header {
+  margin-bottom: 3rem;
+  text-align: center;
+  width: 100%;
+  max-width: 900px;
+  position: relative;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-line), transparent);
+}
+
+header h1,
+.writeup-title {
+  color: var(--accent-light);
+  text-shadow: 0 0 8px var(--accent-glow);
+  letter-spacing: -0.02em;
+  background: none;
+  -webkit-text-fill-color: unset;
+}
+
+
+header p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  font-weight: 400;
+}
+
+/* ====== Meta cards ====== */
+.writeup-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(140px, 1fr));
+  gap: 0.9rem;
+  margin: 1.4rem auto 0;
+  max-width: 760px;
+}
+
+.meta-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 0.95rem 1.1rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.015);
+  border: 1px solid var(--border);
+  box-shadow: none;
+  text-align: left;
+}
+
+.meta-label {
+  color: var(--accent-light);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.9;
+}
+
+.meta-value {
+  color: var(--text);
+  font-size: 0.98rem;
+  font-weight: 600;
+}
+
+/* ====== Badges ====== */
+.header-badge {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.2rem;
+}
+
+.platform-badge,
+.difficulty-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.38rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  border: 1px solid var(--border);
+  background: var(--accent-soft);
+  color: var(--accent-light);
+}
+
+/* ====== Tags ====== */
+.writeup-tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.2rem;
+}
+
+.tag,
+.sidebar-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.38rem 0.8rem;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  border: 1px solid var(--border);
+  color: var(--accent-light);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* ====== Divider ====== */
+.divider,
+.markdown-body hr,
+.writeup-content hr {
+  border: none;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-line), transparent);
+  margin: 2.8rem 0;
+}
+
+/* ====== Sidebar ====== */
+.sidebar-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.sidebar-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent-light);
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.info-value {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ====== Breadcrumb ====== */
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.breadcrumb a {
+  color: var(--accent-light);
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity 0.2s ease;
+}
+
+.breadcrumb a:hover {
+  opacity: 1;
+}
+
+.breadcrumb .separator {
+  color: var(--border);
+}
+
+.breadcrumb .current {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ====== Centraliza os cards ====== */
+.cards {
+  width: 100%;
+  max-width: 900px;
+}
+
+/* ====== Animação de entrada ====== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ====== Scrollbar customizada ====== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(200, 118, 144, 0.35);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(200, 118, 144, 0.55);
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 1200px) {
+  .content {
+    padding-left: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 2rem 1rem;
+  }
+
+  header h1,
+  .writeup-title {
+    font-size: 1.9rem;
+  }
+
+  header p {
+    font-size: 0.98rem;
+  }
+
+  .writeup-meta {
+    grid-template-columns: 1fr;
+  }
+
+  .meta-card {
+    align-items: center;
+    text-align: center;
+  }
+}

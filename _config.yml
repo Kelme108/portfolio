@@ -1,0 +1,49 @@
+# Configurações do Site
+title: RootDas Pentest Book
+description: Cybersecurity & Pentest Write-ups
+author: Luiz Kelme
+email: seu-email@example.com
+url: "https://seuusuario.github.io"
+baseurl: ""
+
+markdown: kramdown
+highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+collections:
+  writeups:
+    output: true
+    permalink: /writeups/:path/
+  projects:
+    output: true
+    permalink: /projects/:path/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "writeups"
+    values:
+      layout: "writeup"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
+
+# Configurações de build
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Syntax highlighting theme
+kramdown:
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: 'highlight'

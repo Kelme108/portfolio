@@ -1,0 +1,68 @@
+---
+layout: default
+title: Write-ups
+---
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Write-ups — RootDas Pentest Book</title>
+
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/sidebar.css">
+  <link rel="stylesheet" href="styles/right-sidebar.css">
+  <link rel="stylesheet" href="styles/cards.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+  <link rel="stylesheet" href="styles/writeups-page.css">
+  
+</head>
+<body>
+  <div class="layout writeups-page">
+
+    <main class="content-writeups">
+      
+      <header>
+        <h1>🧠 Write-ups</h1>
+        <p>Detailed documentation of all completed machines and challenges.</p>
+      </header>
+
+      <section class="cards" id="cardsContainer">
+        {% assign sorted_writeups = site.writeups | sort: 'date' | reverse %}
+        {% if sorted_writeups.size > 0 %}
+          {% for writeup in sorted_writeups %}
+<a href="{{ writeup.url }}" class="card">
+  <div class="card-body">
+    <div class="card-top-row">
+      <span class="badge badge-difficulty badge-{{ writeup.difficulty | downcase | replace: ' ', '-' }}">
+        {{ writeup.difficulty }}
+      </span>
+    </div>
+    <h3 class="card-title">{{ writeup.title }}</h3>
+    <p class="card-excerpt">{{ writeup.excerpt | strip_html | truncatewords: 20 }}</p>
+    <div class="card-meta">
+      <span class="meta-pill meta-date">📅 {{ writeup.date | date: "%b, %Y" }}</span>
+      <span class="meta-pill meta-platform">🖥 {{ writeup.platform }}</span>
+      <span class="meta-pill meta-os">💻 {{ writeup.os }}</span>
+    </div>
+  </div>
+  <div class="card-cover">
+    <img src="{{ writeup.image | default: '/assets/unified.jpg' }}"
+         alt="{{ writeup.title }}" loading="lazy">
+  </div>
+</a>
+          {% endfor %}
+        {% else %}
+          <div class="no-results">
+            <div class="no-results-icon">📭</div>
+            <h3>Nenhum write-up publicado ainda.</h3>
+            <p>Em breve novos conteúdos serão adicionados.</p>
+          </div>
+        {% endif %}
+      </section>
+    </main>
+
+  </div>
+</body>
+</html>

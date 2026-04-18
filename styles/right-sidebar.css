@@ -1,0 +1,169 @@
+/* ====== Right Sidebar ====== */
+.right-sidebar {
+  width: 320px;
+  background: var(--bg-sidebar);
+  border-left: 1px solid var(--border);
+  padding: 2.5rem 1.5rem;
+  height: 100vh;
+  overflow-y: auto;
+  position: sticky;
+  top: 0;
+  box-shadow: -2px 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.right-sidebar h3 {
+  color: var(--accent);
+  text-align: center;
+  font-size: 1.2em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 12px;
+  margin-bottom: 25px;
+  font-weight: 700;
+  position: relative;
+}
+
+.right-sidebar h3::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: var(--accent-light);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* ====== Tech Grid ====== */
+.tech-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+.tech-card {
+  background: linear-gradient(135deg, rgba(190, 123, 132, 0.1) 0%, rgba(190, 123, 132, 0.05) 100%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+
+.tech-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(190, 123, 132, 0.15), transparent);
+  transition: left 0.5s ease;
+}
+
+.tech-card:hover::before {
+  left: 100%;
+}
+
+.tech-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 8px 25px var(--accent-glow);
+  border-color: var(--accent);
+  background: linear-gradient(135deg, rgba(190, 123, 132, 0.15) 0%, rgba(190, 123, 132, 0.08) 100%);
+}
+
+.tech-card .icon {
+  font-size: 2.2em;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 0 10px var(--accent-glow));
+  transition: all 0.3s ease;
+}
+
+.tech-card:hover .icon {
+  transform: scale(1.15) rotate(5deg);
+  filter: drop-shadow(0 0 15px var(--accent-glow));
+}
+
+.tech-card h4 {
+  color: var(--accent-light);
+  margin: 8px 0 5px;
+  font-size: 1.15em;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.tech-card p {
+  color: var(--muted);
+  font-size: 0.85em;
+  font-family: 'Courier New', monospace;
+  letter-spacing: 0.3px;
+}
+
+/* ====== Scrollbar customizada ====== */
+.right-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.right-sidebar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.right-sidebar::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+.right-sidebar::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-light);
+}
+
+/* ====== Animação de entrada ====== */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.right-sidebar {
+  animation: slideInRight 0.5s ease-out;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 1400px) {
+  .right-sidebar {
+    width: 280px;
+    padding: 2rem 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .right-sidebar {
+    width: 100%;
+    height: auto;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    position: relative;
+    padding: 2rem 1.5rem;
+  }
+  
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+@media (max-width: 500px) {
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
+}

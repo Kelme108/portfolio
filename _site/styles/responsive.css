@@ -1,0 +1,326 @@
+/* ====== Responsive Design - Mobile First ====== */
+
+/* ====== Desktop Large (1400px+) ====== */
+@media (min-width: 1400px) {
+  .content {
+    max-width: 1200px;
+  }
+  
+  header h1 {
+    font-size: 3rem;
+  }
+}
+
+/* ====== Desktop (1200px - 1399px) ====== */
+@media (max-width: 1399px) {
+  .sidebar {
+    width: 240px;
+  }
+  
+  .right-sidebar {
+    width: 280px;
+  }
+  
+  .content {
+    padding-left: 15rem;
+  }
+}
+
+/* ====== Laptop (992px - 1199px) ====== */
+@media (max-width: 1199px) {
+  .sidebar {
+    width: 220px;
+  }
+  
+  .right-sidebar {
+    width: 260px;
+  }
+  
+  .content {
+    padding: 2.5rem 1.5rem 2.5rem 14rem;
+  }
+  
+  header h1 {
+    font-size: 2.2rem;
+  }
+}
+
+/* ====== Tablet (768px - 991px) ====== */
+@media (max-width: 991px) {
+  .layout {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+  }
+  
+  .right-sidebar {
+    width: 100%;
+    height: auto;
+    border-left: none;
+    border-top: 1px solid var(--border);
+    position: relative;
+    padding: 2rem 1.5rem;
+  }
+  
+  .content {
+    padding: 2rem 1.5rem;
+  }
+  
+  .profile img {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .profile h2 {
+    font-size: 1.3rem;
+  }
+  
+  .menu {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+  
+  .menu a {
+    flex: 1;
+    min-width: calc(50% - 0.3rem);
+    justify-content: center;
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+  
+  .tech-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  header h1 {
+    font-size: 2rem;
+  }
+  
+  header p {
+    font-size: 1rem;
+  }
+}
+
+/* ====== Mobile Large (576px - 767px) ====== */
+@media (max-width: 767px) {
+  .content {
+    padding: 1.5rem 1rem;
+  }
+  
+  header {
+    margin-bottom: 2rem;
+  }
+  
+  header h1 {
+    font-size: 1.8rem;
+  }
+  
+  header p {
+    font-size: 0.95rem;
+  }
+  
+  .card-content {
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+  
+  .card img {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .card-text h3 {
+    font-size: 1.4rem;
+  }
+  
+  .card-text p {
+    font-size: 0.95rem;
+  }
+  
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  
+  .tech-card {
+    padding: 12px;
+  }
+  
+  .tech-card .icon {
+    font-size: 1.8em;
+  }
+  
+  .tech-card h4 {
+    font-size: 1em;
+  }
+}
+
+/* ====== Mobile Medium (480px - 575px) ====== */
+@media (max-width: 575px) {
+  .sidebar {
+    padding: 1.5rem 1rem;
+  }
+  
+  .profile img {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .profile h2 {
+    font-size: 1.2rem;
+  }
+  
+  .profile p {
+    font-size: 0.85rem;
+  }
+  
+  .menu a {
+    padding: 0.7rem;
+    font-size: 0.9rem;
+  }
+  
+  header h1 {
+    font-size: 1.6rem;
+  }
+  
+  header p {
+    font-size: 0.9rem;
+  }
+  
+  .card {
+    border-radius: 12px;
+  }
+  
+  .card-content {
+    padding: 1.2rem;
+  }
+  
+  .card img {
+    height: 180px;
+    border-radius: 10px;
+  }
+  
+  .card-text h3 {
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+  }
+  
+  .card-text p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+  }
+  
+  .card-meta {
+    gap: 0.8rem;
+  }
+  
+  .card-meta span {
+    font-size: 0.8rem;
+    padding: 5px 12px;
+  }
+}
+
+/* ====== Mobile Small (320px - 479px) ====== */
+@media (max-width: 479px) {
+  .content {
+    padding: 1rem 0.8rem;
+  }
+  
+  .sidebar {
+    padding: 1.2rem 0.8rem;
+  }
+  
+  .profile img {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .profile h2 {
+    font-size: 1.1rem;
+  }
+  
+  .menu {
+    gap: 0.5rem;
+  }
+  
+  .menu a {
+    min-width: 100%;
+    font-size: 0.85rem;
+  }
+  
+  header h1 {
+    font-size: 1.4rem;
+  }
+  
+  header p {
+    font-size: 0.85rem;
+  }
+  
+  .cards {
+    gap: 1.2rem;
+  }
+  
+  .card-content {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  
+  .card img {
+    height: 160px;
+  }
+  
+  .card-text h3 {
+    font-size: 1.2rem;
+  }
+  
+  .card-text p {
+    font-size: 0.85rem;
+  }
+  
+  .tech-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .tech-card {
+    padding: 10px;
+  }
+  
+  .right-sidebar {
+    padding: 1.5rem 1rem;
+  }
+}
+
+/* ====== Landscape Mobile ====== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .sidebar {
+    padding: 1rem;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-align: left;
+  }
+  
+  .profile img {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 0;
+  }
+  
+  .menu {
+    flex-direction: row;
+    margin-top: 1rem;
+  }
+}

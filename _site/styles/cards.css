@@ -1,0 +1,287 @@
+/* ====== Cards Holographic 3D Compact Style ====== */
+.cards {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+  max-width: 900px;
+  perspective: 1000px;
+}
+
+.card {
+  display: block;
+  background: linear-gradient(135deg, rgba(190, 123, 132, 0.15) 0%, rgba(13, 13, 13, 0.95) 100%);
+  border-radius: 16px;
+  text-decoration: none;
+  color: var(--text);
+  box-shadow: 
+    0 6px 25px rgba(0, 0, 0, 0.4),
+    inset 0 0 60px rgba(190, 123, 132, 0.05);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.320, 1);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border);
+  transform-style: preserve-3d;
+}
+
+/* Efeito holográfico rotativo */
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    transparent,
+    var(--accent),
+    transparent 30%
+  );
+  animation: rotate 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+@keyframes rotate {
+  100% { transform: rotate(360deg); }
+}
+
+.card:hover::before {
+  opacity: 0.3;
+}
+
+/* Camada interna para efeito de profundidade */
+.card::after {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: linear-gradient(135deg, rgba(190, 123, 132, 0.1) 0%, rgba(13, 13, 13, 0.98) 100%);
+  border-radius: 14px;
+  z-index: 1;
+}
+
+.card:hover {
+  transform: translateY(-10px) rotateX(3deg) scale(1.01);
+  box-shadow: 
+    0 20px 50px rgba(190, 123, 132, 0.6),
+    0 0 100px rgba(190, 123, 132, 0.4),
+    inset 0 0 80px rgba(190, 123, 132, 0.1);
+  border-color: var(--accent);
+}
+
+/* Layout compacto */
+.card-content {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.3rem 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Imagem redonda */
+.card img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--border);
+  box-shadow: 
+    0 8px 25px rgba(0, 0, 0, 0.5),
+    0 0 30px rgba(190, 123, 132, 0.4),
+    inset 0 0 20px rgba(190, 123, 132, 0.2);
+  transition: all 0.5s ease;
+  flex-shrink: 0;
+  transform: translateZ(20px);
+  position: relative;
+}
+
+/* Glow pulsante na imagem */
+.card img::before {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+  animation: glowPulse 2s infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% { opacity: 0; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.1); }
+}
+
+.card:hover img::before {
+  opacity: 1;
+}
+
+.card:hover img {
+  transform: translateZ(40px) scale(1.15) rotate(5deg);
+  border-color: var(--accent);
+  box-shadow: 
+    0 15px 50px rgba(0, 0, 0, 0.7),
+    0 0 60px var(--accent-glow),
+    inset 0 0 30px rgba(190, 123, 132, 0.4);
+}
+
+.card-text {
+  flex: 1;
+  transform: translateZ(10px);
+  min-width: 0;
+}
+
+.card-text h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 900;
+  background: linear-gradient(135deg, var(--accent-light) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: 'Courier New', monospace;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  filter: drop-shadow(0 0 15px var(--accent-glow));
+  transition: all 0.3s ease;
+}
+
+.card-text h3::before {
+  content: '█ ';
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.card:hover .card-text h3 {
+  transform: translateX(8px);
+  filter: drop-shadow(0 0 25px var(--accent-glow));
+}
+
+.card-text p {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+  transition: color 0.3s ease;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.card:hover .card-text p {
+  color: var(--text);
+}
+
+.card-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  font-family: 'Courier New', monospace;
+  flex-wrap: wrap;
+}
+
+.card-meta span {
+  background: rgba(190, 123, 132, 0.2);
+  color: var(--accent-light);
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+}
+
+.card:hover .card-meta span {
+  background: rgba(190, 123, 132, 0.3);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px var(--accent-glow);
+}
+
+/* Animação de entrada dos cards */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: fadeInUp 0.6s ease-out backwards;
+}
+
+.card:nth-child(1) { animation-delay: 0.1s; }
+.card:nth-child(2) { animation-delay: 0.2s; }
+.card:nth-child(3) { animation-delay: 0.3s; }
+.card:nth-child(4) { animation-delay: 0.4s; }
+.card:nth-child(5) { animation-delay: 0.5s; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-content {
+    padding: 1.2rem;
+    gap: 1.2rem;
+  }
+  
+  .card img {
+    width: 85px;
+    height: 85px;
+  }
+  
+  .card-text h3 {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
+  
+  .card-text p {
+    font-size: 0.85rem;
+    -webkit-line-clamp: 2;
+  }
+  
+  .card-meta {
+    gap: 0.7rem;
+  }
+  
+  .card-meta span {
+    font-size: 0.75rem;
+    padding: 4px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.2rem;
+  }
+  
+  .card img {
+    width: 110px;
+    height: 110px;
+  }
+  
+  .card-text h3 {
+    font-size: 1.3rem;
+  }
+  
+  .card-text p {
+    -webkit-line-clamp: 3;
+  }
+  
+  .card-meta {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,103 @@
+---
+layout: default
+---
+
+<div class="writeup-wrapper">
+  <nav class="breadcrumb">
+    <a href="/">Home</a>
+    <span class="separator">/</span>
+    <a href="/writeups.html">Write-ups</a>
+    <span class="separator">/</span>
+    <span class="current">{{ page.title }}</span>
+  </nav>
+
+  <div class="writeup-container">
+    <article class="writeup-main">
+      <header class="writeup-header">
+        <div class="header-badge">
+          <span class="platform-badge">{{ page.platform }}</span>
+          <span class="difficulty-badge difficulty-{{ page.difficulty | downcase }}">
+            {{ page.difficulty }}
+          </span>
+        </div>
+
+        <h1 class="writeup-title">
+          <span class="title-icon">🔒</span>
+          <span>{{ page.title }}</span>
+        </h1>
+
+        <div class="writeup-meta">
+          <div class="meta-card">
+            <span class="meta-label">Sistema</span>
+            <span class="meta-value">{{ page.os }}</span>
+          </div>
+
+          <div class="meta-card">
+            <span class="meta-label">Data</span>
+            <span class="meta-value">{{ page.date | date: "%d/%m/%Y" }}</span>
+          </div>
+
+          <div class="meta-card">
+            <span class="meta-label">Categoria</span>
+            <span class="meta-value">{{ page.category }}</span>
+          </div>
+        </div>
+
+        {% if page.tags %}
+        <div class="writeup-tags">
+          {% for tag in page.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </header>
+
+      <hr class="divider">
+
+      <div class="writeup-content markdown-body">
+        {{ content }}
+      </div>
+    </article>
+
+    <aside class="writeup-sidebar">
+      <div class="sidebar-card info-box">
+        <h3 class="sidebar-title">Informações</h3>
+
+        <div class="info-grid">
+          <div class="info-row">
+            <span class="info-label">Plataforma</span>
+            <span class="info-value">{{ page.platform }}</span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Dificuldade</span>
+            <span class="info-value difficulty-{{ page.difficulty | downcase }}">
+              {{ page.difficulty }}
+            </span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Sistema</span>
+            <span class="info-value">{{ page.os }}</span>
+          </div>
+
+          <div class="info-row">
+            <span class="info-label">Data</span>
+            <span class="info-value">{{ page.date | date: "%d/%m/%Y" }}</span>
+          </div>
+        </div>
+      </div>
+
+      {% if page.tags %}
+      <div class="sidebar-card tags-box">
+        <h3 class="sidebar-title">Tags</h3>
+        <div class="tags-list">
+          {% for tag in page.tags %}
+            <span class="sidebar-tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endif %}
+    </aside>
+  </div>
+</div>
