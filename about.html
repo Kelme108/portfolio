@@ -23,6 +23,8 @@ permalink: /about/
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
+
+<style>
     .about-wrapper {
       width: 100%;
       max-width: 900px;
@@ -319,6 +321,8 @@ permalink: /about/
       }
     }
 
+</style>
+
     <!-- Main content -->
     <main class="content">
 
@@ -524,11 +528,3 @@ permalink: /about/
     </main>
 
 </html>
-'''
-
-import os
-os.makedirs('output', exist_ok=True)
-with open('output/about.html', 'w', encoding='utf-8') as f:
-    f.write(about)
-
-print("Done:", len(about), "chars")

@@ -12,6 +12,8 @@
 <link rel="stylesheet" href="/portfolio/styles/cards.css">
 <link rel="stylesheet" href="/portfolio/styles/markdown.css">
 <link rel="stylesheet" href="/portfolio/styles/responsive.css">
+<link rel="stylesheet" href="/portfolio/styles/about.css">
+
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
@@ -74,19 +76,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About — Luiz Kelme</title>
 
-  <link rel="stylesheet" href="/styles/main.css">
-  <link rel="stylesheet" href="/styles/sidebar.css">
-  <link rel="stylesheet" href="/styles/right-sidebar.css">
-  <link rel="stylesheet" href="/styles/cards.css">
-  <link rel="stylesheet" href="/styles/responsive.css">
+<link rel="stylesheet" href="/portfolio/styles/main.css">
+<link rel="stylesheet" href="/portfolio/styles/sidebar.css">
+<link rel="stylesheet" href="/portfolio/styles/right-sidebar.css">
+<link rel="stylesheet" href="/portfolio/styles/cards.css">
+<link rel="stylesheet" href="/portfolio/styles/markdown.css">
+<link rel="stylesheet" href="/portfolio/styles/responsive.css">
+<link rel="stylesheet" href="/portfolio/styles/writeups-page.css">
+<link rel="stylesheet" href="/portfolio/styles/about.css">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
 
-  <style>
-    /* ====== About page specific ====== */
 
+<style>
     .about-wrapper {
       width: 100%;
       max-width: 900px;
@@ -382,30 +385,8 @@
         align-items: flex-start;
       }
     }
-  </style>
-</head>
-<body>
-  <div class="layout">
 
-    <!-- Left Sidebar -->
-    <aside class="sidebar">
-      <div class="profile">
-        <img src="assets/avatar.jpg" alt="Profile picture">
-        <h2>RootDas Pentest book</h2>
-        <p>Cybersecurity & Pentest</p>
-      </div>
-
-      <nav class="menu">
-        <a href="index.html">🏠 Home</a>
-        <a href="writeups.html">🧠 Write-ups</a>
-        <a href="theory.html">📘 Theory</a>
-        <a href="about.html" class="active">👤 About</a>
-      </nav>
-
-      <footer class="sidebar-footer">
-        <p>© 2025 RootDas</p>
-      </footer>
-    </aside>
+</style>
 
     <!-- Main content -->
     <main class="content">
@@ -420,7 +401,7 @@
         <!-- Hero -->
         <div class="about-hero">
           <div class="about-hero-top">
-            <img class="about-avatar" src="assets/avatar.jpg" alt="Luiz Kelme" />
+            <img class="about-avatar" src="/portfolio/assets/avatar.jpg" alt="Luiz Kelme" />
             <div class="about-identity">
               <h1>Luiz Henrique Barbosa Kelme</h1>
               <div class="role">Junior SOC Analyst · Cyber Defense Student · CTF Player</div>
@@ -611,32 +592,7 @@
       </div>
     </main>
 
-    <!-- Right Sidebar -->
-    <aside class="right-sidebar">
-      <h3>⚙️ Tech Stack</h3>
-      <div class="tech-grid">
-        <div class="tech-card"><div class="icon">🌐</div><h4>Nmap</h4><p>Reconnaissance</p></div>
-        <div class="tech-card"><div class="icon">🧠</div><h4>Wireshark</h4><p>Traffic Analysis</p></div>
-        <div class="tech-card"><div class="icon">🛡️</div><h4>Burp Suite</h4><p>Web Security</p></div>
-        <div class="tech-card"><div class="icon">💀</div><h4>Metasploit</h4><p>Exploitation</p></div>
-        <div class="tech-card"><div class="icon">🐍</div><h4>Python</h4><p>Programming</p></div>
-        <div class="tech-card"><div class="icon">💻</div><h4>Bash</h4><p>Scripting</p></div>
-        <div class="tech-card"><div class="icon">🗃️</div><h4>SQLMap</h4><p>Databases</p></div>
-        <div class="tech-card"><div class="icon">🔐</div><h4>Hashcat</h4><p>Cracking</p></div>
-      </div>
-    </aside>
-
-  </div>
-</body>
 </html>
-'''
-
-import os
-os.makedirs('output', exist_ok=True)
-with open('output/about.html', 'w', encoding='utf-8') as f:
-    f.write(about)
-
-print("Done:", len(about), "chars")
     </main>
     
     <!-- Right Sidebar (dentro da .layout) -->
