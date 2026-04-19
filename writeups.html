@@ -38,7 +38,7 @@ permalink: /writeups/
         {% assign sorted_writeups = site.writeups | sort: 'date' | reverse %}
         {% if sorted_writeups.size > 0 %}
           {% for writeup in sorted_writeups %}
-<a href="{{ writeup.url }}" class="card">
+<a href="{{ writeup.url | relative_url }}" class="card">
   <div class="card-body">
     <div class="card-top-row">
       <span class="badge badge-difficulty badge-{{ writeup.difficulty | downcase | replace: ' ', '-' }}">

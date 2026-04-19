@@ -37,7 +37,9 @@ permalink: /
       </header>
 
       <section class="cards">
-        <a href="/writeups/hackthebox/unified" class="card">
+      {% for writeup in site.writeups %}
+        <a href="{{ writeup.url | relative_url }}" class="card">
+      {% endfor %}
           <div class="card-content">
             <div class="card-text">
               <h3>Unified</h3>
