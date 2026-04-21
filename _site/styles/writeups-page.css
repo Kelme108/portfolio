@@ -2,10 +2,11 @@
 .writeups-page .cards {
   display: flex;
   flex-direction: column;
+  align-items: center;        /* ← centraliza os cards */
   gap: 1rem;
   width: 100%;
-  max-width: 900px;
-  margin-top: 2rem;
+  max-width: 1300px;
+  margin: 2rem auto 0;        /* ← auto nas laterais para centralizar */
 }
 
 /* ====== Card ====== */
@@ -153,6 +154,27 @@
   opacity: 1 !important;
 }
 
+/* ====== Header centralizado ====== */
+.writeups-page header {
+  text-align: center;
+  width: 100%;
+  padding: 2.5rem 1rem 1rem;
+}
+
+.writeups-page header h1 {
+  white-space: nowrap;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+}
+
+/* ====== Content wrapper centralizado ====== */
+.writeups-page .content-writeups {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 0 2rem;
+}
+
 /* ====== Empty state ====== */
 .writeups-page .no-results {
   text-align: center;
@@ -176,5 +198,14 @@
     min-width: 100px;
     height: 100px;
     padding: 0.75rem;
+  }
+
+  .writeups-page header h1 {
+    white-space: normal;        /* ← permite quebra no mobile */
+    font-size: clamp(1.4rem, 6vw, 2rem);
+  }
+
+  .writeups-page .content-writeups {
+    padding: 0 1rem;
   }
 }

@@ -4,7 +4,8 @@
   flex-direction: column;
   gap: 1.2rem;
   width: 100%;
-  max-width: 900px;
+  max-width: 1300px;        /* ← aumentado de 900px */
+  margin: 0 auto;           /* ← centraliza horizontalmente */
   perspective: 1000px;
 }
 
@@ -231,6 +232,11 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+  .cards {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
   .card-content {
     padding: 1.2rem;
     gap: 1.2rem;

