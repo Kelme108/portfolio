@@ -291,3 +291,48 @@
     justify-content: center;
   }
 }
+
+.card-badges {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.6rem;
+}
+
+.difficulty-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  background: var(--accent-soft);
+  color: var(--accent-light);
+}
+
+.difficulty-easy {
+  background: rgba(67, 122, 34, 0.15);
+  border-color: rgba(67, 122, 34, 0.3);
+  color: #6daa45;
+}
+
+.difficulty-medium {
+  background: rgba(209, 153, 0, 0.15);
+  border-color: rgba(209, 153, 0, 0.3);
+  color: #e8af34;
+}
+
+.difficulty-hard {
+  background: rgba(161, 44, 68, 0.15);
+  border-color: rgba(161, 44, 68, 0.3);
+  color: #dd6974;
+}
+
+.difficulty-insane {
+  background: rgba(122, 57, 187, 0.15);
+  border-color: rgba(122, 57, 187, 0.3);
+  color: #a86fdf;
+}

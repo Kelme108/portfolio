@@ -6,6 +6,7 @@ platform: Hack The Box
 category: Hack the Box
 difficulty: Very Easy
 os: Linux
+image: /assets/unified.jpg
 ---
 
 # 🛡 Unified – Penetration Test Report

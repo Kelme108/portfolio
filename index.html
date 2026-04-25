@@ -4,59 +4,35 @@ title: Home
 permalink: /
 ---
 
-<link rel="stylesheet" href="{{ '/styles/main.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/styles/sidebar.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/styles/right-sidebar.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/styles/cards.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/styles/markdown.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/styles/responsive.css' | relative_url }}">
+<header>
+  <h1>🔒 Write-ups & Projects</h1>
+  <p>Pentest reports, learning materials, and technical documentation.</p>
+</header>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+<section class="cards">
+  {% for writeup in site.writeups %}
+  <a href="{{ writeup.url | relative_url }}" class="card">
+    <div class="card-content">
+      <div class="card-text">
+        <div class="card-badges">
+          <span class="difficulty-badge difficulty-{{ writeup.difficulty | downcase }}">{{ writeup.difficulty }}</span>
+          <span class="platform-badge">{{ writeup.platform }}</span>
+        </div>
 
+        <h3>{{ writeup.title }}</h3>
+        <p>{{ writeup.description }}</p>
 
+        <div class="card-meta">
+          <span>📅 {{ writeup.date | date: "%b, %Y" }}</span>
+          <span>💼 {{ writeup.platform }}</span>
+          {% if writeup.os %}<span>🖥️ {{ writeup.os }}</span>{% endif %}
+        </div>
+      </div>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfólio — Luiz Kelme</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="styles/main.css">
-</head>
-<body>
-  <div class="layout">
-    
-    <!-- Main content -->
-    <main class="content">
-      <header>
-        <h1>🔒 Write-ups & Projects</h1>
-        <p>Pentest reports, learning materials, and technical documentation.</p>
-      </header>
-
-      <section class="cards">
-      {% for writeup in site.writeups %}
-        <a href="{{ writeup.url | relative_url }}" class="card">
-      {% endfor %}
-          <div class="card-content">
-            <div class="card-text">
-              <h3>Unified</h3>
-              <p>Summary Voleur is a HackTheBox machine that demonstrates a comprehensive Active Directory exploitation...</p>
-              <div class="card-meta">
-                <span>📅 Feb, 2026</span>
-                <span>💼 HackTheBox</span>
-              </div>
-            </div>
-            <img src="assets/unified.jpg" alt="Imagem da máquina Voleur">
-          </div>
-        </a>
-
-
-      </section>
-    </main>
-
-  <script src="scripts/main.js"></script>
-</body>
-</html>
+      {% if writeup.image %}
+      <img src="{{ writeup.image | relative_url }}" alt="{{ writeup.title }}" loading="lazy">
+      {% endif %}
+    </div>
+  </a>
+  {% endfor %}
+</section>
