@@ -4,10 +4,11 @@ title: "Oopsie"
 date: 2025-11-08
 platform: HackTheBox
 difficulty: Very-Easy
+category: HackTheBox
 os: Linux
 tags: [idor, cookie-manipulation, file-upload, php-reverse-shell, path-hijacking, suid, broken-access-control]
 description: "Oopsie is an Easy Linux machine that involves exploiting an IDOR vulnerability to escalate web privileges, uploading a PHP reverse shell, and abusing a SUID binary via PATH hijacking to achieve root."
-image: /assets/writeups/oopsie/cover.png
+image: /assets/writeups/oopsie/oopsie.png
 ---
 
 ## Summary

@@ -1,6 +1,6 @@
 ---
 layout: writeup
-title: Hack The Box Unified
+title: Unified
 date: 2026-04-18
 platform: Hack The Box
 category: Hack the Box
