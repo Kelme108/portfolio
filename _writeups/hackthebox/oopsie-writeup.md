@@ -1,7 +1,7 @@
 ---
 layout: writeup
 title: "Oopsie"
-date: 2025-11-08
+date: 2026-15-05
 platform: HackTheBox
 difficulty: Very-Easy
 category: HackTheBox
