@@ -1,7 +1,7 @@
 ---
 layout: writeup
 title: "Splunk IT"
-date: 2024-01-17
+date: 2026-06-17
 platform: Blue Teams Labs
 difficulty: Easy
 SIEM: Splunk
