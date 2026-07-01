@@ -1,10 +1,10 @@
 ---
 layout: writeup
 title: "Oopsie"
-date: 2026-15-05
+date: 2026-05-15
 platform: HackTheBox
 category: HackTheBox
-difficulty: Very-Easy
+difficulty: "Very Easy"
 os: Linux
 image: /assets/writeups/oopsie/oopsie.png
 ---
