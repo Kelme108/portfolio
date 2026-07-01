@@ -3,8 +3,8 @@ layout: writeup
 title: "Oopsie"
 date: 2026-15-05
 platform: HackTheBox
-difficulty: Very-Easy
 category: HackTheBox
+difficulty: Very-Easy
 os: Linux
 image: /assets/writeups/oopsie/oopsie.png
 ---
