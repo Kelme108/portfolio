@@ -4,7 +4,7 @@ title: "Splunk IT"
 date: 2026-06-17
 platform: Blue Teams Labs
 difficulty: Easy
-SIEM: Splunk
+os: Splunk
 image: /assets/splunk-it.png
 ---
 
