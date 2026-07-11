@@ -1,19 +1,18 @@
-/* ====== Grid de cards ====== */
+/* ====== Writeups page cards ====== */
 .writeups-page .cards {
   display: flex;
   flex-direction: column;
-  align-items: center;        /* ← centraliza os cards */
+  align-items: center;
   gap: 1rem;
   width: 100%;
   max-width: 1300px;
-  margin: 2rem auto 0;        /* ← auto nas laterais para centralizar */
+  margin: 2rem auto 0;
 }
 
-/* ====== Card ====== */
 .writeups-page .card {
   position: relative;
   display: grid;
-  grid-template-columns: 1fr 160px;
+  grid-template-columns: minmax(0, 1fr) 160px;
   align-items: center;
   border-radius: 14px;
   background: #1a1520;
@@ -33,7 +32,6 @@
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
 }
 
-/* ====== Corpo esquerdo ====== */
 .writeups-page .card-body {
   padding: 1.4rem 1.5rem;
   display: flex;
@@ -42,7 +40,6 @@
   min-width: 0;
 }
 
-/* ====== Badge dificuldade ====== */
 .writeups-page .card-top-row {
   display: flex;
   align-items: center;
@@ -60,12 +57,11 @@
   border: 1px solid transparent;
 }
 
-.writeups-page .badge-easy      { background: rgba(39,201,63,0.12);  color: #27c93f; border-color: rgba(39,201,63,0.25); }
-.writeups-page .badge-medium    { background: rgba(255,189,46,0.12); color: #ffbd2e; border-color: rgba(255,189,46,0.25); }
-.writeups-page .badge-hard      { background: rgba(255,95,86,0.12);  color: #ff5f56; border-color: rgba(255,95,86,0.25); }
+.writeups-page .badge-easy { background: rgba(39,201,63,0.12); color: #27c93f; border-color: rgba(39,201,63,0.25); }
+.writeups-page .badge-medium { background: rgba(255,189,46,0.12); color: #ffbd2e; border-color: rgba(255,189,46,0.25); }
+.writeups-page .badge-hard { background: rgba(255,95,86,0.12); color: #ff5f56; border-color: rgba(255,95,86,0.25); }
 .writeups-page .badge-very-easy { background: rgba(85,145,199,0.12); color: #5591c7; border-color: rgba(85,145,199,0.25); }
 
-/* ====== Título ====== */
 .writeups-page .card-title {
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.95rem;
@@ -80,7 +76,6 @@
 .writeups-page .card-title::before { content: none; }
 .writeups-page .card:hover .card-title { color: #e899b4; }
 
-/* ====== Excerpt ====== */
 .writeups-page .card-excerpt {
   font-size: 0.84rem;
   color: var(--muted);
@@ -92,7 +87,6 @@
   overflow: hidden;
 }
 
-/* ====== Meta pills ====== */
 .writeups-page .card-meta {
   display: flex;
   gap: 0.5rem;
@@ -120,7 +114,6 @@
   border-color: rgba(200, 118, 144, 0.22);
 }
 
-/* ====== Imagem direita ====== */
 .writeups-page .card-cover {
   width: 160px;
   min-width: 160px;
@@ -154,7 +147,6 @@
   opacity: 1 !important;
 }
 
-/* ====== Header centralizado ====== */
 .writeups-page header {
   text-align: center;
   width: 100%;
@@ -166,16 +158,15 @@
   font-size: clamp(1.8rem, 4vw, 3rem);
 }
 
-/* ====== Content wrapper centralizado ====== */
 .writeups-page .content-writeups {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   padding: 0 2rem;
+  min-width: 0;
 }
 
-/* ====== Empty state ====== */
 .writeups-page .no-results {
   text-align: center;
   padding: 4rem 2rem;
@@ -186,7 +177,71 @@
 .writeups-page .no-results-icon { font-size: 2.5rem; margin-bottom: 1rem; }
 .writeups-page .no-results h3 { color: var(--text); font-size: 1rem; margin-bottom: 0.5rem; }
 
-/* ====== Responsive ====== */
+/* ====== Writeup layout responsiveness ====== */
+.writeup-wrapper {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem 3rem;
+  min-width: 0;
+}
+
+.writeup-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 2rem;
+  align-items: start;
+  min-width: 0;
+}
+
+.writeup-main,
+.writeup-content,
+.markdown-body {
+  min-width: 0;
+}
+
+.writeup-sidebar {
+  min-width: 0;
+}
+
+.writeup-content img,
+.writeup-content video,
+.writeup-content table,
+.markdown-body img,
+.markdown-body video,
+.markdown-body table {
+  max-width: 100%;
+  height: auto;
+}
+
+.writeup-content pre,
+.markdown-body pre {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.writeup-content code,
+.markdown-body code {
+  word-break: break-word;
+}
+
+/* ====== Tablet ====== */
+@media (max-width: 1200px) {
+  .writeup-wrapper {
+    max-width: 100%;
+    padding: 0 1rem 2.5rem;
+  }
+
+  .writeup-container {
+    grid-template-columns: 1fr;
+  }
+
+  .writeup-sidebar {
+    width: 100%;
+  }
+}
+
+/* ====== Mobile ====== */
 @media (max-width: 768px) {
   .writeups-page .card {
     grid-template-columns: 1fr 100px;
@@ -201,11 +256,78 @@
   }
 
   .writeups-page header h1 {
-    white-space: normal;        /* ← permite quebra no mobile */
+    white-space: normal;
     font-size: clamp(1.4rem, 6vw, 2rem);
   }
 
   .writeups-page .content-writeups {
     padding: 0 1rem;
+  }
+
+  .writeup-wrapper {
+    padding: 0 0.75rem 2rem;
+  }
+
+  .breadcrumb {
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+  }
+
+  .writeup-header {
+    padding: 1.25rem;
+  }
+
+  .writeup-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+    line-height: 1.1;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .header-badge,
+  .writeup-tags {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .writeup-meta {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .meta-card {
+    width: 100%;
+  }
+
+  .sidebar-card {
+    padding: 1rem;
+  }
+}
+
+/* ====== Small mobile ====== */
+@media (max-width: 480px) {
+  .writeups-page .card {
+    grid-template-columns: 1fr;
+  }
+
+  .writeups-page .card-cover {
+    width: 100%;
+    min-width: 0;
+    height: 140px;
+    padding-top: 0;
+  }
+
+  .writeups-page .card-cover img {
+    width: 110px !important;
+    height: 110px !important;
+  }
+
+  .writeup-wrapper {
+    padding: 0 0.5rem 1.5rem;
+  }
+
+  .writeup-header {
+    padding: 1rem;
   }
 }
