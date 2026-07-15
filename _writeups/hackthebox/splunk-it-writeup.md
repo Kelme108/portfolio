@@ -127,10 +127,6 @@ The compromised account was identified by inspecting the `User` field associated
 
 *The `User` field in the Sysmon event confirms the account `CYBERRANGE\ricksanchez` as the user context under which the malicious commands ran.*
 
-![Event detail — ricksanchez confirmed]({{ '/assets/writeups/splunk-it/image-8.png' | relative_url }})
-
-*Additional event detail corroborating `ricksanchez` as the compromised account.*
-
 **Answer:** `ricksanchez`
 
 ---
@@ -147,7 +143,7 @@ After the payload was dropped, the attacker established persistence using a Wind
 schtasks.exe /create /tn "Microsoft Teams Updater" /sc onlogon /tr C:\Windows\Temp\svchost.exe
 ```
 
-![schtasks.exe persistence command]({{ '/assets/writeups/splunk-it/image-9.png' | relative_url }})
+![Event detail — ricksanchez confirmed]({{ '/assets/writeups/splunk-it/image-8.png' | relative_url }})
 
 *`schtasks.exe` was used to create a scheduled task that runs the malicious `svchost.exe` at every user logon, establishing persistent execution.*
 
