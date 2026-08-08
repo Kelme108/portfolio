@@ -55,7 +55,7 @@ chmod +x ghidraRun
 
 As shown in Figure 1, launching Ghidra opens the tool so the binary can be imported into a new project for analysis.
 
-![Figure 1 - Ghidra launched and ready for project/binary import]({{ '/assets/writeups/ice-magic/image.png' | relative_url }})
+![Figure 1 - Ghidra launched and ready for project/binary import]({{ '/assets/writeups/icemagic/image.png' | relative_url }})
 
 *Figure 1 — Ghidra opened after running `./ghidraRun`, ready to import the Icemagic binary for static analysis.*
 
