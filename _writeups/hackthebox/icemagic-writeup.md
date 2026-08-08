@@ -4,10 +4,8 @@ title: "Icemagic"
 date: 2026-08-08
 platform: Blue Teams Labs
 difficulty: Medium
-os: Linux
-tags: [malware-analysis, ghidra, reverse-engineering, ransomware, cryptography, xor, rail-fence-cipher]
-description: "Static reverse engineering of a Linux ransomware sample using Ghidra, covering C2 beaconing, execution guards, Rail Fence Cipher obfuscation, and XOR-based file encryption."
-image: /assets/writeups/icemagic/cover.png
+os: Ghidra (Reverse Engineering)
+image: /assets/icemagicimage.png
 ---
 
 ## Overview
@@ -57,7 +55,7 @@ chmod +x ghidraRun
 
 As shown in Figure 1, launching Ghidra opens the tool so the binary can be imported into a new project for analysis.
 
-![Figure 1 - Ghidra launched and ready for project/binary import]({{ '/assets/writeups/icemagic/image-1.png' | relative_url }})
+![Figure 1 - Ghidra launched and ready for project/binary import]({{ '/assets/writeups/ice-magic/image.png' | relative_url }})
 
 *Figure 1 — Ghidra opened after running `./ghidraRun`, ready to import the Icemagic binary for static analysis.*
 
@@ -479,4 +477,3 @@ However, the source material provided for this analysis documents the decryption
 - **md5sum** — sample hashing for identification.
 - **CyberChef** — Rail Fence Cipher decoding and XOR decryption of extracted byte sequences.
 - **Manual hex-to-ASCII conversion** — recovering obfuscated strings and constants from raw byte sequences shown in Ghidra.
-- **htons() / struct tm / fopen() / fseek() / ftell()** — core C runtime concepts leveraged to understand network byte ordering, time-based logic gating, and file I/O behavior implemented by the malware.
