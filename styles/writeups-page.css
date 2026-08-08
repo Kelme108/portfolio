@@ -331,3 +331,26 @@
     padding: 1rem;
   }
 }
+
+.writeup-content img,
+.markdown-body img {
+  display: block;
+  width: 100%;
+  max-width: 980px;
+  height: auto;
+  margin: 1.5rem auto;
+  border-radius: 12px;
+}
+
+.writeup-content figure,
+.markdown-body figure {
+  margin: 1.5rem 0;
+}
+
+.writeup-content figcaption,
+.markdown-body figcaption {
+  margin-top: 0.5rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
