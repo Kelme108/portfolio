@@ -1,0 +1,28 @@
+---
+layout: default
+title: Categories
+permalink: /categories/
+description: Write-ups grouped by discipline — pentest, malware analysis and incident response.
+---
+{%- assign groups = site.writeups | group_by: "category" | sort: "name" -%}
+<div class="page">
+  <header class="page-head">
+    <h1>Categories</h1>
+    <p>Write-ups grouped by discipline.</p>
+  </header>
+
+  <div class="category-grid">
+    {%- for g in groups %}
+    {%- assign name = g.name | default: "Uncategorized" %}
+    <section class="category-card" id="{{ name | slugify }}">
+      <h2>{% include icon.html name="folder" px="18" %}{{ name }}<span class="chip-count">{{ g.items.size }}</span></h2>
+      <ul class="entry-list">
+        {%- assign items = g.items | sort: "date" | reverse -%}
+        {%- for w in items %}
+        <li><a href="{{ w.url | relative_url }}">{{ w.title }}</a><span>{{ w.platform }} · {{ w.difficulty }}</span></li>
+        {%- endfor %}
+      </ul>
+    </section>
+    {%- endfor %}
+  </div>
+</div>

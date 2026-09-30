@@ -1,0 +1,28 @@
+---
+layout: default
+title: Archives
+permalink: /archives/
+description: Chronological list of every write-up.
+---
+{%- assign by_year = site.writeups | sort: "date" | reverse | group_by_exp: "w", "w.date | date: '%Y'" -%}
+<div class="page">
+  <header class="page-head">
+    <h1>Archives</h1>
+    <p>Everything, newest first.</p>
+  </header>
+
+  {%- for y in by_year %}
+  <section class="archive-year">
+    <h2 class="archive-year-title">{{ y.name }}<span class="chip-count">{{ y.items.size }}</span></h2>
+    <ol class="archive-list">
+      {%- for w in y.items %}
+      <li>
+        <time datetime="{{ w.date | date_to_xmlschema }}"><span>{{ w.date | date: "%d" }}</span>{{ w.date | date: "%b" }}</time>
+        <a href="{{ w.url | relative_url }}">{{ w.title }}</a>
+        <span class="archive-meta">{{ w.platform }} · {{ w.difficulty }}</span>
+      </li>
+      {%- endfor %}
+    </ol>
+  </section>
+  {%- endfor %}
+</div>

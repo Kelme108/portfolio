@@ -1,0 +1,17 @@
+<!-- "Recently Updated" + "Trending Tags" — sits beside content on wide screens, below it otherwise -->
+<aside class="panel" aria-label="Highlights">
+  <section class="panel-card">
+    <h2 class="panel-title">Recently Updated</h2>
+    <ol class="panel-list">
+      {%- assign recent = site.writeups | sort: "date" | reverse -%}
+      {%- for w in recent limit: 5 %}
+      <li><a href="{{ w.url | relative_url }}">{{ w.title }}</a><span>{{ w.date | date: "%b %Y" }} · {{ w.platform }}</span></li>
+      {%- endfor %}
+    </ol>
+  </section>
+
+  <section class="panel-card">
+    <h2 class="panel-title">Trending Tags</h2>
+    {% include tag-cloud.html limit=12 %}
+  </section>
+</aside>

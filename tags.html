@@ -1,0 +1,34 @@
+---
+layout: default
+title: Tags
+permalink: /tags/
+description: Browse every write-up by technique, tool and technology.
+---
+<div class="page">
+  <header class="page-head">
+    <h1>Tags</h1>
+    <p>Techniques, tools and technologies across all write-ups.</p>
+  </header>
+
+  {% include tag-cloud.html %}
+
+  {%- assign raw = "" -%}
+  {%- for w in site.writeups -%}{%- for t in w.tags -%}{%- assign raw = raw | append: t | append: "," -%}{%- endfor -%}{%- endfor -%}
+  {%- assign tags = raw | split: "," | uniq | sort -%}
+
+  <div class="group-list">
+    {%- for t in tags %}
+    <section class="group" id="{{ t | slugify }}">
+      <h2 class="group-title">{% include icon.html name="tag" px="16" %}{{ t }}</h2>
+      <ul class="entry-list">
+        {%- assign items = site.writeups | sort: "date" | reverse -%}
+        {%- for w in items -%}
+          {%- if w.tags contains t %}
+        <li><a href="{{ w.url | relative_url }}">{{ w.title }}</a><span>{{ w.platform }} · <time datetime="{{ w.date | date_to_xmlschema }}">{{ w.date | date: "%b %d, %Y" }}</time></span></li>
+          {%- endif -%}
+        {%- endfor %}
+      </ul>
+    </section>
+    {%- endfor %}
+  </div>
+</div>

@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<div class="page">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="{{ '/' | relative_url }}">Home</a></li>
+      <li><a href="{{ '/projects/' | relative_url }}">Projects</a></li>
+      <li aria-current="page">{{ page.title }}</li>
+    </ol>
+  </nav>
+
+  <header class="page-head page-head--left">
+    <h1>{{ page.title }}</h1>
+    {%- if page.description %}<p>{{ page.description }}</p>{% endif %}
+    {%- if page.stack %}
+    <ul class="chips">{% for s in page.stack %}<li><span class="chip">{{ s }}</span></li>{% endfor %}</ul>
+    {%- endif %}
+  </header>
+
+  <article class="post-body markdown-body">
+    {{ content }}
+  </article>
+</div>

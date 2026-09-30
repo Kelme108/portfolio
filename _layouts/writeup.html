@@ -1,103 +1,99 @@
 ---
 layout: default
+body_class: is-writeup
 ---
+{%- assign diff = page.difficulty | downcase | replace: ' ', '-' -%}
+{%- assign words = content | strip_html | number_of_words -%}
+{%- assign minutes = words | divided_by: 200 | plus: 1 -%}
 
-<div class="writeup-wrapper">
-  <nav class="breadcrumb">
-    <a href="{{ '/' | relative_url }}">Home</a>
-    <span class="separator">/</span>
-    <a href="{{ '/writeups.html' | relative_url }}">Write-ups</a>
-    <span class="separator">/</span>
-    <span class="current">{{ page.title }}</span>
+<div class="page page--wide">
+  <nav class="breadcrumb" aria-label="Breadcrumb">
+    <ol>
+      <li><a href="{{ '/' | relative_url }}">Home</a></li>
+      <li><a href="{{ '/writeups/' | relative_url }}">Write-ups</a></li>
+      <li aria-current="page">{{ page.title }}</li>
+    </ol>
   </nav>
 
-  <div class="writeup-container">
-    <article class="writeup-main">
-      <header class="writeup-header">
-        <div class="header-badge">
-          <span class="platform-badge">{{ page.platform }}</span>
-          <span class="difficulty-badge difficulty-{{ page.difficulty | downcase }}">
-            {{ page.difficulty }}
-          </span>
-        </div>
+  <header class="post-hero">
+    {%- if page.image %}
+    <img class="post-hero-cover" src="{{ page.image | relative_url }}" alt="" width="160" height="160">
+    {%- endif %}
+    <div class="post-hero-text">
+      <p class="post-kicker">
+        <span class="badge badge-{{ diff }}">{{ page.difficulty }}</span>
+        <span>{{ page.platform }}</span>{% if page.category %}<span aria-hidden="true">·</span><a href="{{ '/categories/' | relative_url }}#{{ page.category | slugify }}">{{ page.category }}</a>{% endif %}
+      </p>
+      <h1 class="post-title">{{ page.title }}</h1>
+      {%- if page.description %}
+      <p class="post-lead">{{ page.description }}</p>
+      {%- endif %}
+    </div>
 
-        <h1 class="writeup-title">
-          <span class="title-icon">🔒</span>
-          <span>{{ page.title }}</span>
-        </h1>
+    <dl class="post-meta">
+      <div><dt>{% include icon.html name="flag" px="14" %}Platform</dt><dd>{{ page.platform }}</dd></div>
+      <div><dt>{% include icon.html name="cpu" px="14" %}System</dt><dd>{{ page.os }}</dd></div>
+      <div><dt>{% include icon.html name="calendar" px="14" %}Published</dt><dd><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%b %d, %Y" }}</time></dd></div>
+      <div><dt>{% include icon.html name="clock" px="14" %}Reading</dt><dd>{{ minutes }} min</dd></div>
+    </dl>
 
-        <div class="writeup-meta">
-          <div class="meta-card">
-            <span class="meta-label">System</span>
-            <span class="meta-value">{{ page.os }}</span>
-          </div>
+    {%- if page.tags.size > 0 %}
+    <ul class="chips" aria-label="Tags">
+      {%- for tag in page.tags %}
+      <li><a class="chip" href="{{ '/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag }}</a></li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+  </header>
 
-          <div class="meta-card">
-            <span class="meta-label">Date</span>
-            <span class="meta-value">{{ page.date | date: "%d/%m/%Y" }}</span>
-          </div>
-
-          <div class="meta-card">
-            <span class="meta-label">Category</span>
-            <span class="meta-value">{{ page.category }}</span>
-          </div>
-        </div>
-
-        {% if page.tags %}
-        <div class="writeup-tags">
-          {% for tag in page.tags %}
-            <span class="tag">{{ tag }}</span>
-          {% endfor %}
-        </div>
-        {% endif %}
-      </header>
-
-      <hr class="divider">
-
-      <div class="writeup-content markdown-body">
-        {{ content }}
-      </div>
-    </article>
-
-    <aside class="writeup-sidebar">
-      <div class="sidebar-card info-box">
-        <h3 class="sidebar-title">Information</h3>
-
-        <div class="info-grid">
-          <div class="info-row">
-            <span class="info-label">Platform</span>
-            <span class="info-value">{{ page.platform }}</span>
-          </div>
-
-          <div class="info-row">
-            <span class="info-label">Difficulty</span>
-            <span class="info-value difficulty-{{ page.difficulty | downcase }}">
-              {{ page.difficulty }}
-            </span>
-          </div>
-
-          <div class="info-row">
-            <span class="info-label">System</span>
-            <span class="info-value">{{ page.os }}</span>
-          </div>
-
-          <div class="info-row">
-            <span class="info-label">Date</span>
-            <span class="info-value">{{ page.date | date: "%d/%m/%Y" }}</span>
-          </div>
-        </div>
-      </div>
-
-      {% if page.tags %}
-      <div class="sidebar-card tags-box">
-        <h3 class="sidebar-title">Tags</h3>
-        <div class="tags-list">
-          {% for tag in page.tags %}
-            <span class="sidebar-tag">{{ tag }}</span>
-          {% endfor %}
-        </div>
-      </div>
-      {% endif %}
+  <div class="post-grid">
+    <aside class="post-aside">
+      <details class="toc" data-toc>
+        <summary>{% include icon.html name="list" px="16" %}On this page</summary>
+        <nav class="toc-nav" aria-label="Table of contents"></nav>
+      </details>
     </aside>
+
+    <article class="post-body markdown-body" id="post-content">
+      {{ content }}
+    </article>
   </div>
+
+  <nav class="post-nav" aria-label="More write-ups">
+    {%- if page.previous %}
+    <a class="post-nav-link" href="{{ page.previous.url | relative_url }}" rel="prev">
+      <span>{% include icon.html name="arrow-left" px="14" %}Older</span><strong>{{ page.previous.title }}</strong>
+    </a>
+    {%- else %}<span></span>{% endif %}
+    {%- if page.next %}
+    <a class="post-nav-link post-nav-link--next" href="{{ page.next.url | relative_url }}" rel="next">
+      <span>Newer{% include icon.html name="arrow-right" px="14" %}</span><strong>{{ page.next.title }}</strong>
+    </a>
+    {%- endif %}
+  </nav>
+
+  {%- assign related = "" -%}
+  {%- for w in site.writeups -%}
+    {%- if w.url != page.url -%}
+      {%- assign shared = 0 -%}
+      {%- for t in w.tags -%}{%- if page.tags contains t -%}{%- assign shared = shared | plus: 1 -%}{%- endif -%}{%- endfor -%}
+      {%- if shared > 0 -%}
+        {%- assign key = shared | prepend: "000" | slice: -3, 3 -%}
+        {%- assign related = related | append: key | append: "|" | append: w.url | append: "," -%}
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign related = related | split: "," | sort | reverse -%}
+  {%- if related.size > 0 %}
+  <section class="related">
+    <h2 class="section-title">Related write-ups</h2>
+    <div class="card-grid">
+      {%- for r in related limit: 3 -%}
+        {%- assign rurl = r | split: "|" | last -%}
+        {%- assign rw = site.writeups | where: "url", rurl | first -%}
+        {% include writeup-card.html writeup=rw %}
+      {%- endfor %}
+    </div>
+  </section>
+  {%- endif %}
 </div>

@@ -1,0 +1,24 @@
+{%- comment -%}
+  Tags ranked by usage across the writeups collection
+  (site.tags only covers posts, so we compute it). Optional: limit=N
+{%- endcomment -%}
+{%- assign raw = "" -%}
+{%- for w in site.writeups -%}{%- for t in w.tags -%}{%- assign raw = raw | append: t | append: "," -%}{%- endfor -%}{%- endfor -%}
+{%- assign all_tags = raw | split: "," -%}
+{%- assign unique_tags = all_tags | uniq -%}
+{%- assign ranked = "" -%}
+{%- for t in unique_tags -%}
+  {%- assign n = 0 -%}
+  {%- for x in all_tags -%}{%- if x == t -%}{%- assign n = n | plus: 1 -%}{%- endif -%}{%- endfor -%}
+  {%- assign key = n | prepend: "000" | slice: -3, 3 -%}
+  {%- assign ranked = ranked | append: key | append: "|" | append: t | append: "," -%}
+{%- endfor -%}
+{%- assign ranked = ranked | split: "," | sort | reverse -%}
+{%- assign max = include.limit | default: 999 -%}
+<ul class="tag-cloud">
+  {%- for item in ranked limit: max -%}
+    {%- assign parts = item | split: "|" -%}
+    {%- assign count = parts[0] | plus: 0 %}
+  <li><a class="chip" href="{{ '/tags/' | relative_url }}#{{ parts[1] | slugify }}">{{ parts[1] }}<span class="chip-count">{{ count }}</span></a></li>
+  {%- endfor %}
+</ul>

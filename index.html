@@ -2,37 +2,81 @@
 layout: default
 title: Home
 permalink: /
+body_class: is-home
 ---
+{%- assign sorted = site.writeups | sort: "date" | reverse -%}
+{%- assign platforms = site.writeups | map: "platform" | uniq -%}
+{%- assign raw = "" -%}
+{%- for w in site.writeups -%}{%- for t in w.tags -%}{%- assign raw = raw | append: t | append: "," -%}{%- endfor -%}{%- endfor -%}
+{%- assign tag_count = raw | split: "," | uniq | size -%}
+{%- assign tool_count = 0 -%}
+{%- for g in site.data.stack -%}{%- assign tool_count = tool_count | plus: g.items.size -%}{%- endfor -%}
 
-<header>
-  <h1>🔒 Write-ups & Projects</h1>
-  <p>Pentest reports, learning materials, and technical documentation.</p>
-</header>
-
-<section class="cards">
-  {% for writeup in site.writeups %}
-  <a href="{{ writeup.url | relative_url }}" class="card">
-    <div class="card-content">
-      <div class="card-text">
-        <div class="card-badges">
-          <span class="difficulty-badge difficulty-{{ writeup.difficulty | downcase }}">{{ writeup.difficulty }}</span>
-          <span class="platform-badge">{{ writeup.platform }}</span>
-        </div>
-
-        <h3>{{ writeup.title }}</h3>
-        <p>{{ writeup.description }}</p>
-
-        <div class="card-meta">
-          <span>📅 {{ writeup.date | date: "%b, %Y" }}</span>
-          <span>💼 {{ writeup.platform }}</span>
-          {% if writeup.os %}<span>🖥️ {{ writeup.os }}</span>{% endif %}
-        </div>
+<div class="page page--wide">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-text">
+      <p class="eyebrow"><span class="status-dot" aria-hidden="true"></span>Open to opportunities · Remote / Hybrid</p>
+      <h1 id="hero-title">Turning alerts into <span class="accent">documented investigations</span>.</h1>
+      <p class="hero-lead">
+        I'm <strong>{{ site.author.name }}</strong>, a Junior SOC Analyst and cyber defense student.
+        This is my field notebook — pentest reports, malware reversing and incident-response
+        write-ups, written the way I'd hand them to a team.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="{{ '/writeups/' | relative_url }}">Read the write-ups{% include icon.html name="arrow-right" px="16" %}</a>
+        <a class="btn" href="{{ '/about/' | relative_url }}">About me</a>
+        <a class="btn btn-ghost" href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer">{% include icon.html name="github" px="16" %}GitHub</a>
       </div>
-
-      {% if writeup.image %}
-      <img src="{{ writeup.image | relative_url }}" alt="{{ writeup.title }}" loading="lazy">
-      {% endif %}
     </div>
-  </a>
-  {% endfor %}
-</section>
+
+    <div class="terminal" aria-label="Terminal summary">
+      <div class="terminal-bar" aria-hidden="true"><i></i><i></i><i></i><span>rootdas@soc:~</span></div>
+      <pre class="terminal-body" data-typewriter><code><span class="t-prompt">$</span> whoami
+{{ site.author.role }}
+<span class="t-prompt">$</span> cat focus.txt
+blue-team · detection · malware-analysis · web-pentest
+<span class="t-prompt">$</span> ls writeups/ | wc -l
+{{ site.writeups.size }}
+<span class="t-prompt">$</span> <span class="t-cursor"></span></code></pre>
+    </div>
+  </section>
+
+  <ul class="stats" aria-label="Portfolio in numbers">
+    <li><strong>{{ site.writeups.size }}</strong><span>Write-ups</span></li>
+    <li><strong>{{ platforms.size }}</strong><span>Platforms</span></li>
+    <li><strong>{{ tag_count }}</strong><span>Topics covered</span></li>
+    <li><strong>{{ tool_count }}</strong><span>Tools in the kit</span></li>
+  </ul>
+
+  <div class="with-panel">
+    <section class="home-latest" aria-labelledby="latest-title">
+      <div class="section-head">
+        <h2 class="section-title" id="latest-title">Latest write-ups</h2>
+        <a class="link-more" href="{{ '/writeups/' | relative_url }}">View all{% include icon.html name="arrow-right" px="14" %}</a>
+      </div>
+      <div class="card-grid">
+        {%- for w in sorted limit: site.home_writeups %}
+        {% include writeup-card.html writeup=w %}
+        {%- endfor %}
+      </div>
+    </section>
+
+    {% include panel.html %}
+  </div>
+
+  <section class="workflow" aria-labelledby="workflow-title">
+    <h2 class="section-title" id="workflow-title">How I work an incident</h2>
+    <ol class="workflow-steps">
+      <li><span class="step-n">01</span><h3>Detect</h3><p>Alerts from Wazuh, Elastic and Splunk dashboards.</p></li>
+      <li><span class="step-n">02</span><h3>Triage</h3><p>Classify severity, cut noise, scope the affected assets.</p></li>
+      <li><span class="step-n">03</span><h3>Investigate</h3><p>Correlate logs, reverse samples, map to MITRE ATT&amp;CK.</p></li>
+      <li><span class="step-n">04</span><h3>Respond</h3><p>Escalate and track the case in TheHive.</p></li>
+      <li><span class="step-n">05</span><h3>Report</h3><p>Clear technical write-up with evidence and lessons learned.</p></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="stack-title">
+    <h2 class="section-title" id="stack-title">Toolkit</h2>
+    {% include stack.html %}
+  </section>
+</div>

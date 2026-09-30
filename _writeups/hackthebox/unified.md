@@ -3,10 +3,14 @@ layout: writeup
 title: Unified
 date: 2026-04-18
 platform: Hack The Box
-category: Hack the Box
+category: Pentest
 difficulty: Very Easy
 os: Linux
 image: /assets/unified.jpg
+description: >-
+  Log4Shell (CVE-2021-44228) in UniFi Network 6.4.54 exploited through JNDI
+  injection for a reverse shell, then MongoDB credential abuse to reach root.
+tags: [log4shell, cve-2021-44228, jndi-injection, mongodb, burp-suite, privilege-escalation, linux, web]
 ---
 
 # 🛡 Unified – Penetration Test Report

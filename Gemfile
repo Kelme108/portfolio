@@ -1,17 +1,17 @@
 source "https://rubygems.org"
 
-# COMENTE ou REMOVA a linha do jekyll direto:
-# gem "jekyll", "~> 4.3"
-
-# ADICIONE a gem do github-pages no lugar:
+# Same toolchain GitHub Pages uses to build the site
 gem "github-pages", group: :jekyll_plugins
 
 group :jekyll_plugins do
-  gem "jekyll-feed", "~> 0.12"
+  gem "jekyll-feed"
   gem "jekyll-seo-tag"
-  # adicione outros plugins que você usa aqui
+  gem "jekyll-sitemap"
 end
 
-# Windows/tzinfo (mantenha se já estiver):
+# Ruby 3+ no longer bundles webrick (needed by `jekyll serve`)
+gem "webrick", "~> 1.8"
+
+# Windows/tzinfo
 gem "tzinfo-data", platforms: %i[mingw mswin x64_mingw jruby]
 gem "wdm", "~> 0.1" if Gem.win_platform?

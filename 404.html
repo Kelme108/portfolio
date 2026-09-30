@@ -1,0 +1,19 @@
+---
+layout: default
+title: Page not found
+permalink: /404.html
+sitemap: false
+---
+<div class="page">
+  <section class="notfound">
+    <pre class="terminal-body" aria-hidden="true"><code><span class="t-prompt">$</span> curl -I {{ site.url }}{{ site.baseurl }}/<span class="t-path">???</span>
+HTTP/2 404
+x-hint: this path was never enumerated</code></pre>
+    <h1>404 — nothing here</h1>
+    <p>The page you are looking for does not exist or was moved.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="{{ '/' | relative_url }}">Go home</a>
+      <button class="btn" type="button" data-search-open>{% include icon.html name="search" px="16" %}Search</button>
+    </div>
+  </section>
+</div>

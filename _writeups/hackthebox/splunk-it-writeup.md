@@ -2,10 +2,15 @@
 layout: writeup
 title: "Splunk IT"
 date: 2026-06-17
-platform: Blue Teams Labs
+platform: Blue Team Labs
+category: Incident Response
 difficulty: Easy
 os: Splunk
 image: /assets/splunk-it.png
+description: >-
+  SOC investigation in Splunk of a phishing-to-compromise chain — malicious
+  download, scheduled-task persistence, recon tooling and Mimikatz credential dumping.
+tags: [splunk, siem, phishing, sysmon, persistence, credential-access, mimikatz, windows, mitre-attack]
 ---
 
 ## Overview

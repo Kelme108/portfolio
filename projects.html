@@ -1,0 +1,35 @@
+---
+layout: default
+title: Projects
+permalink: /projects/
+description: Home labs, detection engineering and tooling projects.
+---
+{%- assign projects = site.projects | sort: "date" | reverse -%}
+<div class="page">
+  <header class="page-head">
+    <h1>Projects</h1>
+    <p>Home labs, detection engineering and tooling.</p>
+  </header>
+
+  {%- if projects.size > 0 %}
+  <div class="card-grid">
+    {%- for p in projects %}
+    <article class="wcard">
+      <a class="wcard-link" href="{{ p.url | relative_url }}">
+        <div class="wcard-body">
+          <p class="wcard-kicker">{{ p.stack | join: " · " }}</p>
+          <h3 class="wcard-title">{{ p.title }}</h3>
+          <p class="wcard-excerpt">{{ p.description }}</p>
+        </div>
+      </a>
+    </article>
+    {%- endfor %}
+  </div>
+  {%- else %}
+  <div class="empty">
+    {% include icon.html name="box" px="32" %}
+    <h2>Projects are being documented.</h2>
+    <p>Meanwhile, the <a href="{{ '/writeups/' | relative_url }}">write-ups</a> and my <a href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer">GitHub</a> show what I'm working on.</p>
+  </div>
+  {%- endif %}
+</div>

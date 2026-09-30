@@ -1,19 +1,44 @@
-<!-- Left Sidebar -->
-<aside class="sidebar">
-  <div class="profile">
-    <img src="{{ '/assets/avatar.jpg' | relative_url }}" alt="Foto de perfil">
-    <h2>RootDas Pentest book</h2>
-    <p>Cybersecurity & Pentest</p>
+<!-- Primary navigation: fixed column on desktop, off-canvas drawer below 1100px -->
+<aside class="sidebar" id="site-nav" aria-label="Site navigation">
+  <div class="sidebar-inner">
+    <button class="icon-btn sidebar-close" type="button" data-nav-close aria-label="Close menu">
+      {% include icon.html name="x" px="20" %}
+    </button>
+
+    <a class="profile" href="{{ '/' | relative_url }}">
+      <img src="{{ site.author.avatar | relative_url }}" alt="" width="96" height="96">
+      <span class="profile-name">RootDas <span>Pentest Book</span></span>
+      <span class="profile-role">{{ site.tagline }}</span>
+    </a>
+
+    <nav class="menu">
+      <ul>
+        {%- for item in site.data.navigation -%}
+          {%- if item.url == "/" -%}
+            {%- assign active = false -%}
+            {%- if page.url == "/" -%}{%- assign active = true -%}{%- endif -%}
+          {%- else -%}
+            {%- assign active = page.url | slice: 0, item.url.size -%}
+            {%- if active == item.url -%}{%- assign active = true -%}{%- else -%}{%- assign active = false -%}{%- endif -%}
+          {%- endif %}
+        <li>
+          <a href="{{ item.url | relative_url }}"{% if active %} class="active" aria-current="page"{% endif %}>
+            {% include icon.html name=item.icon %}<span>{{ item.title }}</span>
+          </a>
+        </li>
+        {%- endfor %}
+      </ul>
+    </nav>
+
+    <div class="sidebar-bottom">
+      {% include theme-toggle.html %}
+      <div class="social">
+        <a class="icon-btn" href="https://github.com/{{ site.github_username }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub">{% include icon.html name="github" %}</a>
+        <a class="icon-btn" href="{{ site.linkedin_url }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">{% include icon.html name="linkedin" %}</a>
+        <a class="icon-btn" href="{{ '/feed.xml' | relative_url }}" aria-label="RSS feed">{% include icon.html name="rss" %}</a>
+      </div>
+      <p class="sidebar-copy">© {{ site.time | date: "%Y" }} RootDas</p>
+    </div>
   </div>
-
-<nav class="menu">
-  <a href="{{ site.baseurl }}/">🏠 Home</a>
-  <a href="{{ site.baseurl }}/writeups/">🧠 Write-ups</a>
-  <a href="{{ site.baseurl }}/theory/">📘 Projects</a>
-  <a href="{{ site.baseurl }}/about/">👤 About</a>
-</nav>
-
-  <footer class="sidebar-footer">
-    <p>© 2025 RootDas</p>
-  </footer>
 </aside>
+<div class="nav-backdrop" data-nav-close hidden></div>

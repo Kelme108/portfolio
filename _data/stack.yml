@@ -1,0 +1,29 @@
+# Tools grouped by domain — rendered on the Home and About pages
+- group: SOC & SIEM
+  icon: activity
+  items:
+    - { name: Wazuh, note: SIEM & XDR }
+    - { name: Elastic Stack, note: Log analysis }
+    - { name: Splunk, note: SPL hunting }
+    - { name: Grafana, note: Monitoring }
+    - { name: TheHive, note: Incident response }
+- group: Offensive
+  icon: terminal
+  items:
+    - { name: Burp Suite, note: Web security }
+    - { name: Nmap, note: Reconnaissance }
+    - { name: Metasploit, note: Exploitation }
+- group: Analysis & Network
+  icon: layers
+  items:
+    - { name: Wireshark, note: Traffic analysis }
+    - { name: Ghidra, note: Reverse engineering }
+    - { name: Fortigate, note: Firewall }
+    - { name: Cloudflare, note: Edge security }
+- group: Code & Cloud
+  icon: cpu
+  items:
+    - { name: Python, note: Automation }
+    - { name: Bash, note: Scripting }
+    - { name: Java / Spring Boot, note: Backend }
+    - { name: AWS, note: Cloud }

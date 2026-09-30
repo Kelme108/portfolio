@@ -1,0 +1,26 @@
+{%- assign w = include.writeup -%}
+{%- assign diff = w.difficulty | downcase | replace: ' ', '-' -%}
+{%- assign words = w.content | strip_html | number_of_words -%}
+{%- assign minutes = words | divided_by: 200 | plus: 1 -%}
+<article class="wcard" data-platform="{{ w.platform | slugify }}" data-difficulty="{{ diff }}" data-category="{{ w.category | slugify }}" data-tags="{{ w.tags | join: ' ' }}" data-search="{{ w.title | downcase }} {{ w.description | downcase | escape }} {{ w.tags | join: ' ' }} {{ w.platform | downcase }} {{ w.os | downcase }} {{ w.category | downcase }}">
+  <a class="wcard-link" href="{{ w.url | relative_url }}">
+    <div class="wcard-cover">
+      {%- if w.image %}
+      <img src="{{ w.image | relative_url }}" alt="" loading="lazy" decoding="async" width="640" height="360">
+      {%- else %}
+      <span class="wcard-cover-fallback" aria-hidden="true">{% include icon.html name="terminal" px="40" %}</span>
+      {%- endif %}
+      <span class="badge badge-{{ diff }}">{{ w.difficulty }}</span>
+    </div>
+    <div class="wcard-body">
+      <p class="wcard-kicker">{{ w.platform }}{% if w.category %} · {{ w.category }}{% endif %}</p>
+      <h3 class="wcard-title">{{ w.title }}</h3>
+      <p class="wcard-excerpt">{{ w.description | default: w.excerpt | strip_html | truncatewords: 28 }}</p>
+      <ul class="wcard-meta">
+        <li>{% include icon.html name="calendar" px="14" %}<time datetime="{{ w.date | date_to_xmlschema }}">{{ w.date | date: "%b %d, %Y" }}</time></li>
+        {%- if w.os %}<li>{% include icon.html name="cpu" px="14" %}{{ w.os }}</li>{% endif %}
+        <li>{% include icon.html name="clock" px="14" %}{{ minutes }} min</li>
+      </ul>
+    </div>
+  </a>
+</article>

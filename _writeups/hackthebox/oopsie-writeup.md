@@ -2,11 +2,15 @@
 layout: writeup
 title: "Oopsie"
 date: 2026-05-15
-platform: HackTheBox
-category: HackTheBox
+platform: Hack The Box
+category: Pentest
 difficulty: "Very Easy"
 os: Linux
 image: /assets/writeups/oopsie/oopsie.png
+description: >-
+  IDOR-driven cookie tampering to reach an admin upload, PHP reverse shell,
+  credential reuse from a config file and SUID PATH hijacking to root.
+tags: [idor, file-upload, php, burp-suite, suid, path-hijacking, privilege-escalation, linux, web]
 ---
 
 ## Summary

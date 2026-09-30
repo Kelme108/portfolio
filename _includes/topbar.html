@@ -1,0 +1,13 @@
+<!-- Compact header, visible below 1100px -->
+<header class="topbar">
+  <button class="icon-btn" type="button" data-nav-open aria-controls="site-nav" aria-expanded="false" aria-label="Open menu">
+    {% include icon.html name="menu" px="22" %}
+  </button>
+  <a class="topbar-brand" href="{{ '/' | relative_url }}">
+    <img src="{{ site.author.avatar | relative_url }}" alt="" width="28" height="28">
+    <span>RootDas</span>
+  </a>
+  <button class="icon-btn" type="button" data-search-open aria-label="Search write-ups">
+    {% include icon.html name="search" px="20" %}
+  </button>
+</header>

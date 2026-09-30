@@ -1,0 +1,12 @@
+{
+  "name": "rootdas-site-tests",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node responsive.mjs"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "4.10.1",
+    "playwright": "1.49.0"
+  }
+}

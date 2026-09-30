@@ -2,73 +2,77 @@
 layout: default
 title: Write-ups
 permalink: /writeups/
+description: Every machine, lab and investigation I have documented — filter by platform, difficulty or category.
 ---
+{%- assign sorted = site.writeups | sort: "date" | reverse -%}
+{%- assign platforms = site.writeups | map: "platform" | uniq | sort -%}
+{%- assign categories = site.writeups | map: "category" | compact | uniq | sort -%}
+{%- assign difficulty_order = "Very Easy,Easy,Medium,Hard,Insane" | split: "," -%}
+{%- assign difficulties = site.writeups | map: "difficulty" | uniq -%}
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Write-ups — RootDas Pentest Book</title>
+<div class="page page--wide">
+  <header class="page-head">
+    <h1>Write-ups</h1>
+    <p>Detailed documentation of every completed machine, lab and challenge.</p>
+  </header>
 
-<link rel="stylesheet" href="{{ '/styles/main.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/styles/sidebar.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/styles/right-sidebar.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/styles/cards.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/styles/markdown.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/styles/responsive.css' | relative_url }}">
-<link rel="stylesheet" href="{{ '/styles/writeups-page.css' | relative_url }}">
+  <form class="filters" data-filters role="search" aria-label="Filter write-ups" onsubmit="return false">
+    <label class="field">
+      <span class="sr-only">Search</span>
+      {% include icon.html name="search" px="16" %}
+      <input type="search" name="q" placeholder="Search by title, tag, tool…" autocomplete="off">
+    </label>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/tokyo-night-dark.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <fieldset class="filter-group">
+      <legend>Platform</legend>
+      <div class="chip-row">
+        <label class="chip-toggle"><input type="radio" name="platform" value="" checked><span>All</span></label>
+        {%- for p in platforms %}
+        <label class="chip-toggle"><input type="radio" name="platform" value="{{ p | slugify }}"><span>{{ p }}</span></label>
+        {%- endfor %}
+      </div>
+    </fieldset>
 
-  
-</head>
-<body>
-  <div class="layout writeups-page">
+    <fieldset class="filter-group">
+      <legend>Difficulty</legend>
+      <div class="chip-row">
+        <label class="chip-toggle"><input type="radio" name="difficulty" value="" checked><span>All</span></label>
+        {%- for d in difficulty_order -%}
+          {%- if difficulties contains d %}
+        <label class="chip-toggle"><input type="radio" name="difficulty" value="{{ d | downcase | replace: ' ', '-' }}"><span>{{ d }}</span></label>
+          {%- endif -%}
+        {%- endfor %}
+      </div>
+    </fieldset>
 
-    <main class="content-writeups">
-      
-      <header>
-        <h1>🧠 Write-ups</h1>
-        <p>Detailed documentation of all completed machines and challenges.</p>
-      </header>
+    <fieldset class="filter-group">
+      <legend>Category</legend>
+      <div class="chip-row">
+        <label class="chip-toggle"><input type="radio" name="category" value="" checked><span>All</span></label>
+        {%- for c in categories %}
+        <label class="chip-toggle"><input type="radio" name="category" value="{{ c | slugify }}"><span>{{ c }}</span></label>
+        {%- endfor %}
+      </div>
+    </fieldset>
+  </form>
 
-      <section class="cards" id="cardsContainer">
-        {% assign sorted_writeups = site.writeups | sort: 'date' | reverse %}
-        {% if sorted_writeups.size > 0 %}
-          {% for writeup in sorted_writeups %}
-<a href="{{ writeup.url | relative_url }}" class="card">
-  <div class="card-body">
-    <div class="card-top-row">
-      <span class="badge badge-difficulty badge-{{ writeup.difficulty | downcase | replace: ' ', '-' }}">
-        {{ writeup.difficulty }}
-      </span>
-    </div>
-    <h3 class="card-title">{{ writeup.title }}</h3>
-    <p class="card-excerpt">{{ writeup.excerpt | strip_html | truncatewords: 20 }}</p>
-    <div class="card-meta">
-      <span class="meta-pill meta-date">📅 {{ writeup.date | date: "%b, %Y" }}</span>
-      <span class="meta-pill meta-platform">🖥 {{ writeup.platform }}</span>
-      <span class="meta-pill meta-os">💻 {{ writeup.os }}</span>
-    </div>
+  <p class="filter-status" aria-live="polite" data-filter-status>{{ sorted.size }} write-ups</p>
+
+  {%- if sorted.size > 0 %}
+  <div class="card-grid" data-filter-list>
+    {%- for w in sorted %}
+    {% include writeup-card.html writeup=w %}
+    {%- endfor %}
   </div>
-  <div class="card-cover">
-    <img src="{{ writeup.image | relative_url }}""
-         alt="{{ writeup.title }}" loading="lazy">
+  <div class="empty" data-filter-empty hidden>
+    {% include icon.html name="search" px="32" %}
+    <h2>No write-ups match these filters.</h2>
+    <button class="btn" type="button" data-filter-reset>Clear filters</button>
   </div>
-</a>
-          {% endfor %}
-        {% else %}
-          <div class="no-results">
-            <div class="no-results-icon">📭</div>
-            <h3>Nenhum write-up publicado ainda.</h3>
-            <p>Em breve novos conteúdos serão adicionados.</p>
-          </div>
-        {% endif %}
-      </section>
-    </main>
-
+  {%- else %}
+  <div class="empty">
+    <h2>No write-ups published yet.</h2>
+    <p>New content is on the way.</p>
   </div>
-</body>
-</html>
+  {%- endif %}
+</div>

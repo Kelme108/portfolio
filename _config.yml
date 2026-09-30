@@ -1,13 +1,45 @@
-# Configurações do Site
+# ====== Site ======
 title: RootDas Pentest Book
-description: Cybersecurity & Pentest Write-ups
-author: Luiz Kelme
-email: seu-email@example.com
+tagline: Cybersecurity & Pentest Write-ups
+description: >-
+  Write-ups, investigations and notes by Luiz Kelme — Junior SOC Analyst and
+  CTF player covering pentest, malware analysis and incident response.
+lang: en
+timezone: America/Sao_Paulo
 baseurl: "/portfolio"
 url: "https://kelme108.github.io"
 
+author:
+  name: Luiz Kelme
+  full_name: Luiz Henrique Barbosa Kelme
+  role: Junior SOC Analyst · Cyber Defense Student · CTF Player
+  location: Jundiaí, SP — Brazil
+  avatar: /assets/avatar.jpg
+  # email: TODO — add a public contact e-mail when available
+
+social:
+  name: Luiz Kelme
+  links:
+    - https://github.com/Kelme108
+    - https://www.linkedin.com/in/luiz-kelme-6a388b224/
+
+github_username: Kelme108
+linkedin_url: https://www.linkedin.com/in/luiz-kelme-6a388b224/
+
+logo: /assets/avatar.jpg
+
+# ====== Build ======
 markdown: kramdown
 highlighter: rouge
+future: true
+
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    css_class: highlight
+    block:
+      line_numbers: false
 
 plugins:
   - jekyll-feed
@@ -22,28 +54,27 @@ collections:
     output: true
     permalink: /projects/:path/
 
-# Defaults
 defaults:
   - scope:
       path: ""
-      type: "writeups"
+      type: writeups
     values:
-      layout: "writeup"
+      layout: writeup
   - scope:
       path: ""
-      type: "projects"
+      type: projects
     values:
-      layout: "project"
+      layout: project
 
-# Configurações de build
+# Home page: how many write-ups to show in the grid
+home_writeups: 6
+
 exclude:
   - Gemfile
   - Gemfile.lock
   - node_modules
   - vendor
-
-# Syntax highlighting theme
-kramdown:
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
-    css_class: 'highlight'
+  - docs
+  - tests
+  - README.md
+  - "*.ps1"

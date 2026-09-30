@@ -2,10 +2,15 @@
 layout: writeup
 title: "Icemagic"
 date: 2026-08-08
-platform: Blue Teams Labs
+platform: Blue Team Labs
+category: Malware Analysis
 difficulty: Medium
 os: Ghidra (Reverse Engineering)
 image: /assets/icemagicimage.png
+description: >-
+  Static reverse engineering of the Icemagic Linux ransomware in Ghidra — C2
+  beacon, time-based execution guard, hidden ransom-note command and XOR crypto.
+tags: [reverse-engineering, ghidra, ransomware, malware-analysis, xor, c2, linux]
 ---
 
 ## Overview

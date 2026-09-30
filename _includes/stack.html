@@ -1,0 +1,12 @@
+<div class="stack-grid">
+  {%- for g in site.data.stack %}
+  <section class="stack-group">
+    <h3>{% include icon.html name=g.icon px="16" %}{{ g.group }}</h3>
+    <ul>
+      {%- for t in g.items %}
+      <li><strong>{{ t.name }}</strong><span>{{ t.note }}</span></li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endfor %}
+</div>
