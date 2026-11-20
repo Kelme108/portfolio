@@ -3,10 +3,15 @@ layout: writeup
 title: "Checkpoint"
 date: 2026-09-03
 platform: Hack The Box
-category: Active Directory
+category: Pentest
 difficulty: Medium
 os: Windows
 image: /assets/writeups/checkpoint/image-25.png
+description: >-
+  Deleted-object ACL abuse and a malicious VSIX supply-chain foothold lead to
+  a BadSuccessor (dMSA) privilege escalation, VM memory forensics and
+  Pass-the-Hash to full domain controller compromise.
+tags: [active-directory, bloodyad, badsuccessor, dmsa, kerberos, rubeus, vsix, supply-chain, volatility, pass-the-hash, windows-server-2025]
 ---
 
 ## Summary
