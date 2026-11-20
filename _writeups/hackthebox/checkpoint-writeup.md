@@ -6,7 +6,7 @@ platform: Hack The Box
 category: Pentest
 difficulty: Medium
 os: Windows
-image: /assets/writeups/checkpoint/image-25.png
+image: /assets/writeups/checkpoint/cover.png
 description: >-
   Deleted-object ACL abuse and a malicious VSIX supply-chain foothold lead to
   a BadSuccessor (dMSA) privilege escalation, VM memory forensics and
